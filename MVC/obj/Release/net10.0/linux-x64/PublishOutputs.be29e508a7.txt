@@ -1,0 +1,4 @@
+E:\VSProjects\MVC\MVC\bin\Release\net10.0\publish\linux-x64\MVC.pdb
+E:\VSProjects\MVC\MVC\bin\Release\net10.0\publish\linux-x64\libHarfBuzzSharp.so
+E:\VSProjects\MVC\MVC\bin\Release\net10.0\publish\linux-x64\libSkiaSharp.so
+E:\VSProjects\MVC\MVC\bin\Release\net10.0\publish\linux-x64\MVC

@@ -9,6 +9,7 @@ using System.Linq;
 
 namespace MVC
 {
+
     public partial class App : Application
     {
         public override void Initialize()

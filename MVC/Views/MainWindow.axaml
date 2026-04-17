@@ -6,15 +6,101 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="MVC.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+		Background="#1F232A"
         Icon="/Assets/avalonia-logo.ico"
         Title="MVC">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+	<Grid RowDefinitions="1*, auto, Auto"
+		  ColumnDefinitions="1*,2*"
+		  x:Name="Root">
+		<ScrollViewer Grid.Column="1">
+			<ItemsControl ItemsSource="{Binding VideoItems}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="vm:VideoItemViewModel">
+						<Grid ColumnDefinitions="1.5*,1.5*,1*,auto">
+							<TextBlock Grid.Column="0"
+									   Text="{Binding VideoURL}"/>
+							<TextBlock Grid.Column="1"
+									   Text="{Binding VideoPath}"/>
+							<TextBlock Grid.Column="2"
+									   Text="{Binding VideoName}"/>
+							<Button Grid.Column="3"
+									Content="Supprimer"
+									Command="{Binding #Root.((vm:MainWindowViewModel)DataContext).RemoveItemCommand}"
+									CommandParameter="{Binding}"/>
+						</Grid>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>	
+			</ItemsControl>
+		</ScrollViewer>
+		<Border Grid.Column="0"
+                Background="#262C36"
+                
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="20">
+            <StackPanel Spacing="6">
+                <TextBlock Text="URL"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Left"/>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Background="#1B1F27"
+                         Foreground="White"
+                         BorderBrush="#4A90E2"/>
 
+                <Button Content="Charger"
+                        Background="#4A90E2"
+                        Foreground="White"
+                        BorderBrush="#4A90E2"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Command=""/>
+                <TextBlock Text="Nom"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Left"/>
+                <TextBox Background="#1B1F27"
+                         Foreground="White"
+                         BorderBrush="#4A90E2"/>
+                <TextBlock Text="Chemin"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Left"/>
+                <TextBox Background="#1B1F27"
+                         Foreground="White"
+                         BorderBrush="#4A90E2"/>
+                <TextBlock Text="Début (mm:ss)"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Left"/>
+                <TextBox 
+                         Background="#1B1F27"
+                         Watermark="Optionnel"
+                         Foreground="White"
+                         BorderBrush="#4A90E2"/>
+                <TextBlock Text="Fin (mm:ss)"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Left"/>
+                <TextBox 
+                         Background="#1B1F27"
+                         Watermark="Optionnel"
+                         Foreground="White"
+                         BorderBrush="#4A90E2"/>
+                <Button Content="Télécharger Vidéo"
+                        Background="#4A90E2"
+                        Foreground="White"
+                        BorderBrush="#4A90E2"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Command=""/>
+            </StackPanel>
+        </Border>
+	</Grid>
 </Window>

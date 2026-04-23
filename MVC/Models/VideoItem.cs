@@ -8,21 +8,24 @@ using VideoLibrary;
 using Xabe.FFmpeg;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace MVC.Models
 {
     [INotifyPropertyChanged]
     public partial class VideoItem : YouTube
     {
-        public string VideoPath { get; set; }
-        public string VideoURL { get; set; }
-        public string VideoName { get; set; }
+        public string? VideoPath { get; set; }
+        public string? VideoURL { get; set; }
 
-        public int VideoCropStart { get; set; }
+        [ObservableProperty]
+        public string? _videoName;
 
-        public int VideoCropEnd { get; set; }
+        public int? VideoCropStart { get; set; }
 
-        public int VideoLength { get; set; }
+        public int? VideoCropEnd { get; set; }
+
+        public int? VideoLength { get; set; }
 
         [ObservableProperty]
         private int _videoDownloadCurrentProgress;
@@ -35,11 +38,24 @@ namespace MVC.Models
             VideoURL = url;
         }
 
+        public VideoItem(VideoItem srcItem)
+        {
+            Video = srcItem.Video;
+            VideoURL = srcItem.VideoURL;
+            VideoName = srcItem.VideoName;
+            VideoPath = srcItem.VideoPath;
+            VideoCropStart = srcItem.VideoCropStart;
+            VideoCropEnd = srcItem.VideoCropEnd;
+            VideoLength = srcItem.VideoLength;
+        }
+
+        
 
         public async Task InitializeAsync()
         {
             try
             {
+                VideoName= "Chargement...";
                 Video = await YouTube.Default.GetVideoAsync(VideoURL);
                 VideoLength = Video.Info.LengthSeconds;
                 var safeVideoName = Regex.Replace(Video.Title, @"[\\\/:*?""<>|]", "_");
@@ -51,20 +67,19 @@ namespace MVC.Models
             }
         }
 
-        public async Task ConvertFromYoutubeToMp3(string youtubeUrl, string outputDirectory, string outputFileName)
-        {
-            if (string.IsNullOrWhiteSpace(youtubeUrl)) throw new ArgumentException("youtubeUrl");
-            if (string.IsNullOrWhiteSpace(outputDirectory)) throw new ArgumentException("outputDirectory");
-            if (string.IsNullOrWhiteSpace(outputFileName)) throw new ArgumentException("outputFileName");
+       
 
+        public async Task ConvertFromYoutubeToMp3()
+        {
+            
             // Ensure output directory exists
-            Directory.CreateDirectory(outputDirectory);
+            Directory.CreateDirectory(VideoPath);
 
             // Use VideoLibrary to get the video stream (as binary) and save to a temp file
-            var tempVideoPath = Path.Combine(outputDirectory, Guid.NewGuid().ToString() + Path.GetExtension(this.Video.FullName));
+            var tempVideoPath = Path.Combine(VideoPath, Guid.NewGuid().ToString() + Path.GetExtension(this.Video.FullName));
             await File.WriteAllBytesAsync(tempVideoPath, this.Video.GetBytes());
 
-            var outputMp3Path = Path.Combine(outputDirectory, outputFileName + ".mp3");
+            var outputMp3Path = Path.Combine(VideoPath, VideoName + ".mp3");
 
 
             try
@@ -80,7 +95,7 @@ namespace MVC.Models
                     try
                     {
                         var expectedTotal = (VideoCropStart > 0 || VideoCropEnd > 0)
-                            ? TimeSpan.FromSeconds(VideoCropEnd - VideoCropStart)
+                            ? TimeSpan.FromSeconds((double)(VideoCropEnd - VideoCropStart))
                             : args.TotalLength;
 
                         if (expectedTotal.TotalSeconds <= 0)

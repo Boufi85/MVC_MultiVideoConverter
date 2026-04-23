@@ -31,3 +31,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [E:/VSProjects/MVC/MVC/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[E:/VSProjects/MVC/MVC/Views/VideoItemView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

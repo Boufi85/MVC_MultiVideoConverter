@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="using:MVC.Models"
+			 xmlns:vm="using:MVC.ViewModels"
+			 xmlns:view="using:MVC.Views"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Class="MVC.Views.VideoItemView"
+			 x:DataType="vm:VideoItemViewModel"
+			 FontFamily="fonts:Inter#Inter">
+	<Grid RowDefinitions="1*, 10*"
+		  ColumnDefinitions="1*,2*"
+		  x:Name="Root">
+
+		<Border Grid.Column="0"
+				Background="#262C36"
+				BorderThickness="1"
+				CornerRadius="14"
+				Padding="20"
+				Grid.RowSpan="2">
+			<StackPanel Spacing="6">
+				<TextBlock Text="URL"/>
+				<TextBox Text="{Binding VideoURL}"/>
+				<Button Content="Charger"
+						Command="{Binding LoadVideoItemCommand}"/>
+				<TextBlock Text="Nom"/>
+				<TextBox Text="{Binding VideoName}"/>
+				<TextBlock Text="Chemin"/>
+				<TextBox Text="{Binding VideoPath}"/>
+				<TextBlock Text="Début (Optionnel)"/>
+				<MaskedTextBox 
+				Mask="{Binding VideoCropMask}"
+				Text="{Binding VideoCropStart}"/>
+				<TextBlock Text="Fin (Optionnel)"/>
+				<MaskedTextBox 
+				Mask="{Binding VideoCropMask}"
+				Text="{Binding VideoCropEnd}"/>
+				<Button Content="Télécharger Audio"
+						Command="{Binding ConvertVideoItemCommand}"/>
+			</StackPanel>
+		</Border>
+		<Border Grid.Column="1"
+				Grid.Row="0"
+				BorderThickness="1"
+				CornerRadius="14"
+				Padding="20"/>
+		<Grid ColumnDefinitions="5*,2*,1*"
+			  Grid.Column="1"
+			  Grid.Row="0"
+			  IsVisible="{Binding VideoItemsPopulated}">
+			<TextBlock Grid.Column="0"
+					   Grid.Row="0"
+					   Text="Nom de la vidéo : "
+					   Padding="10"/>
+			<TextBlock Grid.Column="1"
+					   Grid.Row="0"
+					   Text="Progression : "
+					   Padding="10"/>
+		</Grid>
+		<ScrollViewer Grid.Column="1"
+					  Grid.Row="1">
+			<ItemsControl ItemsSource="{Binding VideoItems}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="models:VideoItem">
+						<Border Grid.Column="1"
+								Background="#262C36"
+								BorderThickness="1"
+								CornerRadius="14"
+								Padding="20">
+							<Grid ColumnDefinitions="5*,2*,1*"
+								  RowDefinitions="auto,auto">
+								<TextBlock Grid.Column="0"
+										   Grid.Row="1"
+										   Text="{Binding VideoName}" TextWrapping="Wrap"/>
+								<TextBlock Grid.Column="1"
+										   Grid.Row="1"
+										   Text="{Binding VideoDownloadCurrentProgress, StringFormat='{}{0}%'}"/>
+								<Button Grid.Column="2"
+										Grid.Row="1"
+										Content="Vider"
+										Command="{Binding #Root.((vm:VideoItemViewModel)DataContext).RemoveItemCommand}"
+										CommandParameter="{Binding}"/>
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

@@ -12,6 +12,11 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="Styles/AppDefaultStyles.axaml" />
+        <Style Selector="TextBlock">
+    <Setter Property="FontFamily" Value="fonts:Inter#Inter" />
+</Style>
+
+        
     </Application.Styles>
     <Application.Resources>
 		<SolidColorBrush x:Key="PrimaryColor" Color="#1F232A"/>

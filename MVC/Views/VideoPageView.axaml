@@ -6,8 +6,8 @@
 			 xmlns:vm="using:MVC.ViewModels"
 			 xmlns:view="using:MVC.Views"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 x:Class="MVC.Views.VideoItemView"
-			 x:DataType="vm:VideoItemViewModel"
+			 x:Class="MVC.Views.VideoPageView"
+			 x:DataType="vm:VideoPageViewModel"
 			 FontFamily="fonts:Inter#Inter">
 	<Grid RowDefinitions="1*, 10*"
 		  ColumnDefinitions="1*,2*"
@@ -26,8 +26,15 @@
 						Command="{Binding LoadVideoItemCommand}"/>
 				<TextBlock Text="Nom"/>
 				<TextBox Text="{Binding VideoName}"/>
-				<TextBlock Text="Chemin"/>
-				<TextBox Text="{Binding VideoPath}"/>
+				<TextBlock Text="Chemin"></TextBlock>
+				<TextBox Text="{Binding VideoPath}">
+				<TextBox.InnerRightContent>
+					<Button Content="Parcourir..."
+							Command="{Binding BrowseVideoPathCommand}"
+							VerticalAlignment="Stretch"
+							FontSize="12"/>
+				</TextBox.InnerRightContent>
+				</TextBox>
 				<TextBlock Text="Début (Optionnel)"/>
 				<MaskedTextBox 
 				Mask="{Binding VideoCropMask}"
@@ -38,49 +45,52 @@
 				Text="{Binding VideoCropEnd}"/>
 				<Button Content="Télécharger Audio"
 						Command="{Binding ConvertVideoItemCommand}"/>
+
 			</StackPanel>
 		</Border>
 		<Border Grid.Column="1"
-				Grid.Row="0"
 				BorderThickness="1"
 				CornerRadius="14"
-				Padding="20"/>
-		<Grid ColumnDefinitions="5*,2*,1*"
-			  Grid.Column="1"
-			  Grid.Row="0"
-			  IsVisible="{Binding VideoItemsPopulated}">
+				IsVisible="{Binding VideoItemsCollectionPopulated}">
+		<Grid ColumnDefinitions="5*,2*,1.5*"
+			  RowDefinitions="auto"
+			  Margin="10,5,10,5">
 			<TextBlock Grid.Column="0"
-					   Grid.Row="0"
-					   Text="Nom de la vidéo : "
-					   Padding="10"/>
+					   Text="Nom de la vidéo"/>
 			<TextBlock Grid.Column="1"
-					   Grid.Row="0"
-					   Text="Progression : "
-					   Padding="10"/>
+					   Text="Progression"/>
+			<Button Grid.Column="2"
+					Content="Tout vider"
+					Command="{Binding ClearVideoItemsCommand}"
+					IsEnabled="{Binding ClearAllButtonEnabled}"/>
+
 		</Grid>
+		</Border>
 		<ScrollViewer Grid.Column="1"
 					  Grid.Row="1">
 			<ItemsControl ItemsSource="{Binding VideoItems}">
 				<ItemsControl.ItemTemplate>
-					<DataTemplate DataType="models:VideoItem">
+					<DataTemplate DataType="vm:VideoItemDownloadViewModel">
 						<Border Grid.Column="1"
 								Background="#262C36"
 								BorderThickness="1"
-								CornerRadius="14"
-								Padding="20">
-							<Grid ColumnDefinitions="5*,2*,1*"
-								  RowDefinitions="auto,auto">
+								CornerRadius="14">
+							<Grid ColumnDefinitions="5*,2*,1.5*"
+								  RowDefinitions="auto,auto"
+								  Margin="10,10,10,10">
 								<TextBlock Grid.Column="0"
 										   Grid.Row="1"
 										   Text="{Binding VideoName}" TextWrapping="Wrap"/>
 								<TextBlock Grid.Column="1"
 										   Grid.Row="1"
-										   Text="{Binding VideoDownloadCurrentProgress, StringFormat='{}{0}%'}"/>
+										   HorizontalAlignment="Center"
+										   Text="{Binding DownloadProgress, StringFormat='{}{0}%'}"/>
 								<Button Grid.Column="2"
 										Grid.Row="1"
 										Content="Vider"
-										Command="{Binding #Root.((vm:VideoItemViewModel)DataContext).RemoveItemCommand}"
-										CommandParameter="{Binding}"/>
+										Command="{Binding #Root.((vm:VideoPageViewModel)DataContext).RemoveItemCommand}"
+										CommandParameter="{Binding}"
+										IsEnabled="{Binding IsDownloadFinished}"/>
 							</Grid>
 						</Border>
 					</DataTemplate>

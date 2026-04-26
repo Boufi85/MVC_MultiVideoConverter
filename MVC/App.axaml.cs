@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
@@ -13,6 +14,7 @@ namespace MVC
 
     public partial class App : Application
     {
+        public static TopLevel TopLevel { get; private set; }
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -27,6 +29,7 @@ namespace MVC
                 {
                     DataContext = new MainWindowViewModel(),
                 };
+                TopLevel = TopLevel.GetTopLevel(desktop.MainWindow);
             }
 
             base.OnFrameworkInitializationCompleted();

@@ -20,11 +20,11 @@ namespace MVC.ViewModels
     public partial class MainWindowViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private VideoItemViewModel _currentContext;
+        private VideoPageViewModel _currentContext;
 
         public MainWindowViewModel()
         {
-            _currentContext = new VideoItemViewModel();
+            _currentContext = new VideoPageViewModel();
         }
     }
 }

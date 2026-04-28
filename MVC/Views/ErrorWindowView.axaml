@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="clr-namespace:MVC.ViewModels"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:view="clr-namespace:MVC.Views"
+		mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
+		x:Class="MVC.Views.ErrorWindowView"
+		x:DataType="vm:ErrorWindowViewModel"
+		x:CompileBindings="False"
+		Background="#1F232A"
+		Icon="/Assets/avalonia-logo.ico"
+		Title="Erreur"
+		MinWidth="400"
+		MinHeight="200"
+		Width="400"
+		Height="200"
+		Topmost="True"
+		PointerPressed="OnClickCommand">
+
+		<Grid Margin="20" HorizontalAlignment="Center"
+			  RowDefinitions="1*,3*,*">
+			<TextBlock 
+			Grid.Row="0"
+			Text= "{Binding ErrorMessage}"
+			HorizontalAlignment="Center"/>
+			<TextBlock
+			Grid.Row="1"
+			Text= "{Binding ErrorDescription}"
+			TextWrapping="Wrap"
+			FontSize= "14"
+			FontWeight="Normal"/>
+			<Button Grid.Row="2" Content="Fermer" Command="{Binding CloseWindowCommand}" HorizontalAlignment="Center"/>
+	</Grid>
+</Window>

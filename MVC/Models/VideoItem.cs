@@ -9,6 +9,7 @@ using Xabe.FFmpeg;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.Linq;
 
 namespace MVC.Models
 {
@@ -55,19 +56,20 @@ namespace MVC.Models
 
         
 
-        public async Task InitializeAsync()
+        public async Task<string> InitializeAsync()
         {
             try
             {
                 VideoName= "Chargement...";
                 Video = await YouTube.Default.GetVideoAsync(VideoURL);
                 VideoLength = Video.Info.LengthSeconds;
-                var safeVideoName = Regex.Replace(Video.Title, @"[\\\/:*?""<>|]", "_");
+                var safeVideoName = Regex.Replace(Video.Title, @"[\\\/:*?""<>|#]", "_");
                 VideoName = safeVideoName;
+                return VideoName;
             }
             catch (Exception ex)
             {
-                // Handle error
+                throw new InvalidOperationException("URL non valide");
             }
         }
 
@@ -91,17 +93,14 @@ namespace MVC.Models
             try
             {
                 var conversion = await FFmpeg.Conversions.FromSnippet.ExtractAudio(tempVideoPath, outputMp3Path);
-                if (VideoCropStart>0 || VideoCropEnd > 0)
-                {
-                    conversion.AddParameter($"-ss {VideoCropStart} -t {VideoCropEnd - VideoCropStart}");
-                }
-
+                                
+                conversion.AddParameter($"-ss {VideoCropStart} -t {VideoCropEnd - VideoCropStart}");
                 conversion.OnProgress += (sender, args) =>
                 {
                     try
                     {
                         var expectedTotal = (VideoCropStart > 0 || VideoCropEnd > 0)
-                            ? TimeSpan.FromSeconds((double)(VideoCropEnd - VideoCropStart))
+                            ? TimeSpan.FromSeconds((double?)(VideoCropEnd - VideoCropStart)?? 0)
                             : args.TotalLength;
 
                         if (expectedTotal.TotalSeconds <= 0)
@@ -134,7 +133,6 @@ namespace MVC.Models
             }
                 
             this.VideoDownloadCurrentProgress = 100;
-            //this.DownloadEnded = true;
             Console.WriteLine("ConvertFromYoutubeToMp3: es finito");
             try 
             {

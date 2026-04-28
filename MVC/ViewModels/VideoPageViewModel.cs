@@ -2,14 +2,12 @@
 using MVC.Models;
 using Avalonia.Threading;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
-using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using System.Reflection.Metadata.Ecma335;
+using MVC.Views;
+using System.IO;
 
 namespace MVC.ViewModels
 {
@@ -33,16 +31,13 @@ namespace MVC.ViewModels
         private string? _videoPath;
 
         [ObservableProperty]
-        private TimeSpan _videoCropStart;
+        private string _videoCropStart;
 
         [ObservableProperty]
-        private TimeSpan _videoCropEnd;
+        private string _videoCropEnd;
 
         [ObservableProperty]
         private int _videoDownloadCurrentProgress;
-
-        [ObservableProperty]
-        private string _videoCropMask = "00:00";
 
         [ObservableProperty]
         private bool _videoItemsCollectionPopulated = false;
@@ -72,13 +67,18 @@ namespace MVC.ViewModels
         {
             _item.VideoPath = value;
         }
-        partial void OnVideoCropStartChanged(TimeSpan value)
+        partial void OnVideoCropStartChanged(string value)
         {
-            _item.VideoCropStart = (int)value.TotalSeconds;
+            if (!IsValidTimeSpan(value))
+                return;
+            Console.WriteLine("timestamp updated");
+            _item.VideoCropStart = (int)TimeSpan.Parse(value).TotalSeconds;
         }
-        partial void OnVideoCropEndChanged(TimeSpan value)
+        partial void OnVideoCropEndChanged(string value)
         {
-            _item.VideoCropEnd = (int)value.TotalSeconds;
+            if (!IsValidTimeSpan(value))
+                return;
+            _item.VideoCropEnd = (int)TimeSpan.Parse(value).TotalSeconds;
         }
         partial void OnVideoDownloadCurrentProgressChanged(int value)
         {
@@ -87,20 +87,37 @@ namespace MVC.ViewModels
 
 
 
+
         // This command loads the video item based on the provided URL, initializes it, and updates the ViewModel properties accordingly. It also checks if the URL is valid before allowing execution.
         [RelayCommand(CanExecute = nameof(IsValidURL))]
         private async Task LoadVideoItem()
         {
-            await _item.InitializeAsync();
-            VideoName = _item.VideoName;
-            if (_item.VideoLength < 3600)
+            try
             {
-                VideoCropMask = "00:00";
+                var data = await _item.InitializeAsync();
+                VideoName = _item.VideoName;
+
+                VideoCropStart = "00:00:00";
+                _item.VideoCropStart = 0;
+                var EndFormat = TimeSpan.FromSeconds((double)_item.VideoLength).ToString("mm\\:ss");
+                if (_item.VideoLength > 3600)
+                {
+                    VideoCropEnd = EndFormat;
+                }
+                else
+                {
+                    VideoCropEnd = "00:" + EndFormat;
+                }
+                
+                
             }
-            else
+            catch(Exception ex)
             {
-                VideoCropMask = "00:00:00";
+                await RaiseError(ex.Message, "Veuillez vérifier que l'URL est valide et que la vidéo est accessible.");
+                
             }
+
+            
 
         }
 
@@ -113,25 +130,67 @@ namespace MVC.ViewModels
             _item = new VideoItem(string.Empty);
         }
 
+        public async Task RaiseError(string errorMessage, string errorDescription)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                Console.WriteLine("Error");
+
+                var Err = new ErrorWindowView(errorMessage, errorDescription);
+                Err.Show();
+            });
+        }
+
+        // This overloaded constructor allows initializing the ViewModel with an existing VideoItem, which can be useful for editing or reloading a previously loaded video item
         public VideoPageViewModel(VideoItem item)
         {
             _item = item;
             VideoURL = item.VideoURL;
             VideoName = item.VideoName;
             VideoPath = item.VideoPath;
-            VideoCropStart = TimeSpan.Zero;
-            VideoCropEnd = TimeSpan.Zero;
+            VideoCropStart = TimeSpan.FromSeconds(value: (double)item.VideoCropStart).ToString();
+            VideoCropEnd = TimeSpan.FromSeconds(value: (double)item.VideoCropEnd).ToString();
             VideoDownloadCurrentProgress = item.VideoDownloadCurrentProgress;
         }
 
         // This method checks if the current video item has valid properties to allow conversion, such as a valid URL, name, and path
-        private bool CanConvertVideoItem() => !string.IsNullOrWhiteSpace(VideoURL) && !string.IsNullOrWhiteSpace(VideoName) && !string.IsNullOrWhiteSpace(VideoPath);
+        private bool CanConvertVideoItem() => 
+            !string.IsNullOrWhiteSpace(VideoURL) && 
+            !string.IsNullOrWhiteSpace(VideoName) && 
+            !string.IsNullOrWhiteSpace(VideoPath)
+            ;
         
 
         // This command creates a new VideoItem based on the current item, adds it to the collection, and starts the conversion process in a background task
         [RelayCommand(CanExecute = nameof(CanConvertVideoItem))]
         private async Task ConvertVideoItem()
         {
+            if (!Path.Exists(VideoPath))
+            {
+                await RaiseError("Chemin invalide", "Veuillez sélectionner un chemin de sauvegarde valide pour la vidéo.");
+                return;
+            }
+            if (_item.VideoCropStart == null || _item.VideoCropEnd == null)
+            {
+                await RaiseError("Timestamps invalides", "Veuillez vérifier que les timestamps de début et de fin sont au format HH:MM:SS et qu'ils sont valides.");
+                return;
+            }
+            if (_item.VideoCropStart >= _item.VideoCropEnd)
+            {
+                await RaiseError("Timestamps invalides", "Le timestamp de début doit être inférieur au timestamp de fin.");
+                return;
+            }
+            if(_item.VideoCropEnd > _item.VideoLength)
+            {
+                await RaiseError("Timestamps invalides", "Le timestamp de fin ne peut pas être supérieur à la durée totale de la vidéo.");
+                return;
+            }
+            if(File.Exists(Path.Combine(VideoPath, VideoName + ".mp3")))
+            {
+                await RaiseError("Fichier existant", "Un fichier avec le même nom existe déjà dans le chemin de sauvegarde. Veuillez choisir un nom différent ou supprimer le fichier existant.");
+                return;
+            }
+
             var newItem = new VideoItem(_item);
             var newItemViewModel = new VideoItemDownloadViewModel(newItem);
             VideoItems.Add(newItemViewModel);
@@ -142,7 +201,7 @@ namespace MVC.ViewModels
             ClearCurrentVideoItem();
         }
 
-        // This method listens to property changes in the VideoItem and updates the ViewModel properties accordingly
+        // This event handler listens for changes in the download progress of each video item, and updates the Clear All button state accordingly when any item's download progress changes
         private void OnVideoItemDownloadProgressChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (sender is VideoItemDownloadViewModel item)
@@ -157,6 +216,7 @@ namespace MVC.ViewModels
             }
         }
 
+        // This method checks if all video items in the collection have finished downloading, which is used to enable or disable the Clear All button
         private bool AssertVideoItemsDownloadEnded()
         {
             foreach (var item in VideoItems)
@@ -190,10 +250,9 @@ namespace MVC.ViewModels
             VideoURL = null;
             VideoName = null;
             VideoPath = null;
-            VideoCropStart = TimeSpan.Zero;
-            VideoCropEnd = TimeSpan.Zero;
+            VideoCropStart = TimeSpan.Zero.ToString();
+            VideoCropEnd = TimeSpan.Zero.ToString();
             VideoDownloadCurrentProgress = 0;
-            VideoCropMask = "00:00";
 
         }
 

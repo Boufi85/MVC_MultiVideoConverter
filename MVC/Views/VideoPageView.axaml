@@ -37,12 +37,14 @@
 				</TextBox>
 				<TextBlock Text="Début (Optionnel)"/>
 				<MaskedTextBox 
-				Mask="{Binding VideoCropMask}"
-				Text="{Binding VideoCropStart}"/>
+				Mask="00:00:00"
+				Text="{Binding VideoCropStart}"
+				GotFocus="MaskedTextBox_GotFocus"/>
 				<TextBlock Text="Fin (Optionnel)"/>
 				<MaskedTextBox 
-				Mask="{Binding VideoCropMask}"
-				Text="{Binding VideoCropEnd}"/>
+				Mask="00:00:00"
+				Text="{Binding VideoCropEnd}"
+				GotFocus="MaskedTextBox_GotFocus"/>
 				<Button Content="Télécharger Audio"
 						Command="{Binding ConvertVideoItemCommand}"/>
 

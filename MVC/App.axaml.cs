@@ -24,7 +24,7 @@ namespace MVC
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                DisableAvaloniaDataAnnotationValidation();
+                //DisableAvaloniaDataAnnotationValidation();
                 desktop.MainWindow = new MainWindow
                 {
                     DataContext = new MainWindowViewModel(),
@@ -35,7 +35,7 @@ namespace MVC
             base.OnFrameworkInitializationCompleted();
         }
 
-        private void DisableAvaloniaDataAnnotationValidation()
+        /*private void DisableAvaloniaDataAnnotationValidation()
         {
             // Get an array of plugins to remove
             var dataValidationPluginsToRemove =
@@ -46,6 +46,6 @@ namespace MVC
             {
                 BindingPlugins.DataValidators.Remove(plugin);
             }
-        }
+        }*/
     }
 }

@@ -75,7 +75,7 @@ namespace MVC.Models
 
        
 
-        public async Task ConvertFromYoutubeToMp3()
+        public async Task ConvertFromYoutubeToMp3(VideoSnippet Snippet)
         {
             Console.WriteLine("ConvertFromYoutubeToMp3 : starting function");
             this.DownloadEnded = false;
@@ -87,20 +87,20 @@ namespace MVC.Models
             Console.WriteLine("ConvertFromYoutubeToMp3 :writing temporary vidéo to file");
             await File.WriteAllBytesAsync(tempVideoPath, this.Video.GetBytes());
 
-            var outputMp3Path = Path.Combine(VideoPath, VideoName + ".mp3");
+            var outputMp3Path = Path.Combine(VideoPath, Snippet.VideoName + ".mp3");
 
             Console.WriteLine("ConvertFromYoutubeToMp3 : temp write complete");
             try
             {
                 var conversion = await FFmpeg.Conversions.FromSnippet.ExtractAudio(tempVideoPath, outputMp3Path);
                                 
-                conversion.AddParameter($"-ss {VideoCropStart} -t {VideoCropEnd - VideoCropStart}");
+                conversion.AddParameter($"-ss {Snippet.VideoSnippetCropStart} -t {Snippet.VideoSnippetCropEnd - Snippet.VideoSnippetCropStart}");
                 conversion.OnProgress += (sender, args) =>
                 {
                     try
                     {
-                        var expectedTotal = (VideoCropStart > 0 || VideoCropEnd > 0)
-                            ? TimeSpan.FromSeconds((double?)(VideoCropEnd - VideoCropStart)?? 0)
+                        var expectedTotal = (Snippet.VideoSnippetCropStart > 0 || Snippet.VideoSnippetCropEnd > 0)
+                            ? TimeSpan.FromSeconds((double?)(Snippet.VideoSnippetCropEnd - Snippet.VideoSnippetCropStart) ?? 0)
                             : args.TotalLength;
 
                         if (expectedTotal.TotalSeconds <= 0)

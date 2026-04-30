@@ -31,10 +31,10 @@ namespace MVC.ViewModels
         private bool _isDownloadFinished;
 
         // Constructor that initializes the ViewModel with a VideoItem
-        public VideoItemDownloadViewModel(VideoItem videoItem)
+        public VideoItemDownloadViewModel(VideoItem videoItem, string videoSnippetName)
         {
             _videoItem = videoItem;
-            VideoName = videoItem.VideoName;
+            VideoName = videoSnippetName;
             DownloadProgress = videoItem.VideoDownloadCurrentProgress;
             IsDownloadFinished = videoItem.DownloadEnded;
             _videoItem.PropertyChanged += OnVideoItemPropertyChanged;

@@ -50,27 +50,31 @@
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
+            },
+            "Avalonia.Controls.ItemsRepeater": {
+              "target": "Package",
+              "version": "[12.0.0, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
             },
             "Avalonia.Diagnostics": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[11.3.14, )"
             },
             "Avalonia.Fonts.Inter": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.1, )"
+              "version": "[8.4.2, )"
             },
             "MediaToolkit": {
               "target": "Package",
@@ -78,7 +82,7 @@
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[10.0.7, )"
             },
             "Tmds.DBus.Protocol": {
               "target": "Package",
@@ -113,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

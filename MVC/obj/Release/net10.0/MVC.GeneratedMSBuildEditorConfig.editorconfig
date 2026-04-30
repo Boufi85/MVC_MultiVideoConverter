@@ -26,5 +26,14 @@ build_property.EnableCodeStyleSeverity =
 [E:/VSProjects/MVC/MVC/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[E:/VSProjects/MVC/MVC/Styles/AppDefaultStyles.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[E:/VSProjects/MVC/MVC/Views/ErrorWindowView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [E:/VSProjects/MVC/MVC/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[E:/VSProjects/MVC/MVC/Views/VideoPageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -1,0 +1,25 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MVC.App"
+             xmlns:local="using:MVC"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="Styles/AppDefaultStyles.axaml" />
+        <Style Selector="TextBlock">
+    <Setter Property="FontFamily" Value="fonts:Inter#Inter" />
+</Style>
+
+        
+    </Application.Styles>
+    <Application.Resources>
+		<SolidColorBrush x:Key="PrimaryColor" Color="#1F232A"/>
+    </Application.Resources>
+
+</Application>

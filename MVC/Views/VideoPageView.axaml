@@ -6,6 +6,7 @@
     xmlns:models="using:MVC.Models"
     xmlns:vm="using:MVC.ViewModels"
     xmlns:view="using:MVC.Views"
+    xmlns:input="clr-namespace:Avalonia.Input;assembly=Avalonia.Base"
     x:Class="MVC.Views.VideoPageView"
     x:DataType="vm:VideoPageViewModel"
     mc:Ignorable="d"
@@ -67,13 +68,15 @@
                         Grid.Row="2"
                         Grid.Column="0"
                         Text="{Binding VideoURL}"
-                        HorizontalAlignment="Stretch" />
+                        HorizontalAlignment="Stretch"
+                        TabIndex="0" />
 
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="2"
                         Text="{Binding VideoPath}"
-                        HorizontalAlignment="Stretch">
+                        HorizontalAlignment="Stretch"
+                        TabIndex="1">
 
                         <TextBox.InnerRightContent>
                             <Button
@@ -82,7 +85,8 @@
                                 VerticalAlignment="Stretch"
                                 HorizontalAlignment="Center"
                                 MinWidth="100"
-                                FontSize="12" />
+                                FontSize="12"
+                                TabIndex="2" />
                         </TextBox.InnerRightContent>
                     </TextBox>
 
@@ -93,13 +97,14 @@
                         Command="{Binding LoadVideoItemCommand}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        MinWidth="120" />
+                        MinWidth="120"
+                        TabIndex="3" />
                 </Grid>
             </Grid>
         </Border>
 
         <!-- Spacer -->
-        <Border Grid.Row="1" Background="Transparent" />
+        <Border Grid.Row="1" Background="Transparent" IsTabStop="False" />
 
         <!-- Etape 2 -->
         <Border
@@ -153,35 +158,44 @@
                         Command="{Binding AddVideoSnippetCommand}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        MinWidth="120" />
+                        MinWidth="120"
+                        TabIndex="10" />
                 </Grid>
 
-                <ScrollViewer Grid.Row="4">
-                    <ItemsRepeater ItemsSource="{Binding VideoSnippets}">
+                <ScrollViewer
+                    Grid.Row="4"
+                    KeyboardNavigation.TabNavigation="Continue">
+                    <ItemsRepeater
+                        ItemsSource="{Binding VideoSnippets}"
+                        KeyboardNavigation.TabNavigation="Continue">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate DataType="vm:VideoSnippetViewModel">
                                 <Grid
                                     Margin="0,0,0,10"
                                     ColumnDefinitions="1.9*,0.1*,0.5*,0.1*,0.5*,0.1*,Auto"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    KeyboardNavigation.TabNavigation="Continue">
 
                                     <TextBox
                                         Grid.Column="0"
                                         Text="{Binding VideoSnippetName}"
                                         TextWrapping="Wrap"
-                                        HorizontalAlignment="Stretch" />
+                                        HorizontalAlignment="Stretch"
+                                        TabIndex="11" />
 
                                     <MaskedTextBox
                                         Grid.Column="2"
                                         Mask="00:00:00"
                                         Text="{Binding VideoSnippetCropStart}"
-                                        HorizontalAlignment="Stretch" />
+                                        HorizontalAlignment="Stretch"
+                                        TabIndex="12" />
 
                                     <MaskedTextBox
                                         Grid.Column="4"
                                         Mask="00:00:00"
                                         Text="{Binding VideoSnippetCropEnd}"
-                                        HorizontalAlignment="Stretch" />
+                                        HorizontalAlignment="Stretch"
+                                        TabIndex="13" />
 
                                     <Button
                                         Grid.Column="6"
@@ -190,7 +204,8 @@
                                         CommandParameter="{Binding}"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Stretch"
-                                        MinWidth="120" />
+                                        MinWidth="120"
+                                        TabIndex="14" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
@@ -209,13 +224,14 @@
                         Command="{Binding ConvertVideoItemCommand}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        MinWidth="120" />
+                        MinWidth="120"
+                        TabIndex="20" />
                 </Grid>
             </Grid>
         </Border>
 
         <!-- Spacer -->
-        <Border Grid.Row="3" Background="Transparent" />
+        <Border Grid.Row="3" Background="Transparent" IsTabStop="False" />
 
         <!-- Etape 3 -->
         <Border
@@ -263,39 +279,49 @@
                         FontSize="12"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        MinWidth="120" />
+                        MinWidth="120"
+                        TabIndex="30" />
                 </Grid>
 
-                <ScrollViewer Grid.Row="4">
-                    <ItemsRepeater ItemsSource="{Binding VideoItems}">
+                <ScrollViewer
+                    Grid.Row="4"
+                    KeyboardNavigation.TabNavigation="Continue">
+                    <ItemsRepeater
+                        ItemsSource="{Binding VideoItems}"
+                        KeyboardNavigation.TabNavigation="Continue">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate>
-                                    <Grid
-                                        ColumnDefinitions="2*,0.1*,0.5*,0.1*,Auto"
-                                        VerticalAlignment="Center">
+                                <Grid
+                                    ColumnDefinitions="2*,0.1*,0.5*,0.1*,Auto"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,0,10"
+                                    KeyboardNavigation.TabNavigation="Continue">
 
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            Text="{Binding VideoName}"
-                                            VerticalAlignment="Center"
-                                            TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Text="{Binding VideoName}"
+                                        VerticalAlignment="Center"
+                                        TextWrapping="Wrap"
+                                        IsTabStop="False" />
 
-                                        <TextBlock
-                                            Grid.Column="2"
-                                            Text="{Binding DownloadProgress, StringFormat='{}{0}%'}"
-                                            VerticalAlignment="Center" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="{Binding DownloadProgress, StringFormat='{}{0}%'}"
+                                        VerticalAlignment="Center"
+                                        IsTabStop="False" />
 
-                                        <Button
-                                            Grid.Column="4"
-                                            Content="Vider"
-                                            Command="{Binding #Root.((vm:VideoPageViewModel)DataContext).RemoveItemCommand}"
-                                            CommandParameter="{Binding}"
-                                            IsEnabled="{Binding IsDownloadFinished}"
-                                            Padding="10,4"
-                                            MinWidth="120"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Center" />
-                                    </Grid>
+                                    <Button
+                                        Grid.Column="4"
+                                        Content="Vider"
+                                        Command="{Binding #Root.((vm:VideoPageViewModel)DataContext).RemoveItemCommand}"
+                                        CommandParameter="{Binding}"
+                                        IsEnabled="{Binding IsDownloadFinished}"
+                                        Padding="10,4"
+                                        MinWidth="120"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"
+                                        TabIndex="31" />
+                                </Grid>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
                     </ItemsRepeater>

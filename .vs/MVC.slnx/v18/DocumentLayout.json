@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\VSProjects\\MVC\\",
+  "WorkspaceRootPath": "E:\\VSProjects\\MVC_MultiVideoConverter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc\\mvc\\views\\videopageview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_multivideoconverter\\mvc\\views\\videopageview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\videopageview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
@@ -14,26 +14,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "VideoPageView.axaml",
-              "DocumentMoniker": "E:\\VSProjects\\MVC\\MVC\\Views\\VideoPageView.axaml",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\Views\\VideoPageView.axaml",
               "RelativeDocumentMoniker": "MVC\\Views\\VideoPageView.axaml",
-              "ToolTip": "E:\\VSProjects\\MVC\\MVC\\Views\\VideoPageView.axaml*",
+              "ToolTip": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\Views\\VideoPageView.axaml*",
               "RelativeToolTip": "MVC\\Views\\VideoPageView.axaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-30T17:27:14.683Z",
+              "WhenOpened": "2026-04-30T17:48:07.714Z",
               "EditorCaption": ""
             }
           ]

@@ -1857,11 +1857,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\MVC.csproj",
+      "projectUniqueName": "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj",
       "projectName": "MVC",
-      "projectPath": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\MVC.csproj",
+      "projectPath": "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj",
       "packagesPath": "C:\\Users\\tombe\\.nuget\\packages\\",
-      "outputPath": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\obj\\",
+      "outputPath": "E:\\VSProjects\\MVC_2\\MVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tombe\\AppData\\Roaming\\NuGet\\NuGet.Config",

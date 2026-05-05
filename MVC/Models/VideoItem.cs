@@ -16,7 +16,9 @@ namespace MVC.Models
     [INotifyPropertyChanged]
     public partial class VideoItem : YouTube
     {
+        
         public string? VideoPath { get; set; }
+
         public string? VideoURL { get; set; }
 
         [ObservableProperty]
@@ -40,6 +42,8 @@ namespace MVC.Models
         {
             VideoURL = url;
         }
+        [ObservableProperty]
+        private string _tempVideoPath;
 
         public VideoItem(VideoItem srcItem)
         {
@@ -51,21 +55,25 @@ namespace MVC.Models
             VideoCropEnd = srcItem.VideoCropEnd;
             VideoLength = srcItem.VideoLength;
             DownloadEnded = srcItem.DownloadEnded;
+            TempVideoPath = srcItem.TempVideoPath;
 
         }
 
         
 
-        public async Task<string> InitializeAsync()
+        public async Task InitializeAsync()
         {
             try
             {
+                if (!string.IsNullOrEmpty(TempVideoPath))
+                {
+                    await Task.Run(() => DeleteTempVideoFile(TempVideoPath));
+                }
                 VideoName= "Chargement...";
                 Video = await YouTube.Default.GetVideoAsync(VideoURL);
                 VideoLength = Video.Info.LengthSeconds;
                 var safeVideoName = Regex.Replace(Video.Title, @"[\\\/:*?""<>|#]", "_");
                 VideoName = safeVideoName;
-                return VideoName;
             }
             catch (Exception ex)
             {
@@ -74,8 +82,7 @@ namespace MVC.Models
         }
 
        
-
-        public async Task ConvertFromYoutubeToMp3(VideoSnippet Snippet)
+        public async Task WriteVideoToFile()
         {
             Console.WriteLine("ConvertFromYoutubeToMp3 : starting function");
             this.DownloadEnded = false;
@@ -83,9 +90,24 @@ namespace MVC.Models
             Directory.CreateDirectory(VideoPath);
 
             // Use VideoLibrary to get the video stream (as binary) and save to a temp file
+            var tmp = Path.Combine(VideoPath, Guid.NewGuid().ToString() + Path.GetExtension(this.Video.FullName));
+            Console.WriteLine("ConvertFromYoutubeToMp3 :writing temporary vidéo to file");
+            await File.WriteAllBytesAsync(tmp, this.Video.GetBytes());
+            TempVideoPath = tmp;
+        }
+
+
+        public async Task ConvertFromYoutubeToMp3(VideoSnippet Snippet, string tempVideoPath)
+        {
+            /*Console.WriteLine("ConvertFromYoutubeToMp3 : starting function");
+            this.DownloadEnded = false;
+            // Ensure output directory exists
+            Directory.CreateDirectory(VideoPath);
+
+            // Use VideoLibrary to get the video stream (as binary) and save to a temp file
             var tempVideoPath = Path.Combine(VideoPath, Guid.NewGuid().ToString() + Path.GetExtension(this.Video.FullName));
             Console.WriteLine("ConvertFromYoutubeToMp3 :writing temporary vidéo to file");
-            await File.WriteAllBytesAsync(tempVideoPath, this.Video.GetBytes());
+            await File.WriteAllBytesAsync(tempVideoPath, this.Video.GetBytes());*/
 
             var outputMp3Path = Path.Combine(VideoPath, Snippet.VideoName + ".mp3");
 
@@ -145,7 +167,7 @@ namespace MVC.Models
                 throw; 
             }
         }
-        private static async Task DeleteTempVideoFile(string path, int attempts = 10, int delayMs = 300)
+        public static async Task DeleteTempVideoFile(string path, int attempts = 10, int delayMs = 300)
         {
             if (string.IsNullOrWhiteSpace(path)|| !File.Exists(path))
             {

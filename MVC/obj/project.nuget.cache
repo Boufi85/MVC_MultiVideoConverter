@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4i6Pa238cts=",
+  "dgSpecHash": "VpFdnSNNxvM=",
   "success": true,
-  "projectFilePath": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\MVC.csproj",
+  "projectFilePath": "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tombe\\.nuget\\packages\\avalonia\\12.0.2\\avalonia.12.0.2.nupkg.sha512",
     "C:\\Users\\tombe\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.25547.20250602\\avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",
@@ -48,9 +48,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'MediaToolkit 1.1.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
-      "projectPath": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\MVC.csproj",
+      "projectPath": "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj",
       "warningLevel": 1,
-      "filePath": "E:\\VSProjects\\MVC_MultiVideoConverter\\MVC\\MVC.csproj",
+      "filePath": "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj",
       "libraryId": "MediaToolkit",
       "targetGraphs": [
         "net10.0"

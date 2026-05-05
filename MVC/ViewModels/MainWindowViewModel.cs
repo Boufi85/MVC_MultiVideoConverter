@@ -24,7 +24,7 @@ namespace MVC.ViewModels
 
         public MainWindowViewModel()
         {
-            _currentContext = new VideoPageViewModel();
+            CurrentContext = new VideoPageViewModel();
         }
     }
 }

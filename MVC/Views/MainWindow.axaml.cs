@@ -1,4 +1,6 @@
 using Avalonia.Controls;
+using MVC.ViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace MVC.Views
@@ -8,8 +10,15 @@ namespace MVC.Views
         public MainWindow()
         {
             InitializeComponent();
+            Closed += OnClosed;
         }
 
-        
+        private void OnClosed(object? sender, EventArgs e)
+        {
+            if(DataContext is MainWindowViewModel vm)
+            {
+                vm.CurrentContext.OnPageClose(sender, e);
+            }
+        }
     }
 }

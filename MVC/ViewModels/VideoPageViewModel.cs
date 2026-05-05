@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Avalonia.Controls;
 using System.Text.RegularExpressions;
 using System.Linq.Expressions;
+using System.ComponentModel;
 
 namespace MVC.ViewModels
 {
@@ -29,7 +30,7 @@ namespace MVC.ViewModels
         [ObservableProperty]
         private string? _videoURL;
 
-        [NotifyCanExecuteChangedFor(nameof(ConvertVideoItemCommand))]
+        [NotifyCanExecuteChangedFor(nameof(LoadVideoItemCommand))]
         [ObservableProperty]
         private string? _videoPath;
 
@@ -51,9 +52,14 @@ namespace MVC.ViewModels
 
         [ObservableProperty]
         private bool _showSnippetSection = false;
-        [NotifyCanExecuteChangedFor(nameof(ConvertVideoItemCommand))]
+
+        [NotifyCanExecuteChangedFor(nameof(ConvertVideoItemCommand),nameof(AddVideoSnippetCommand))]
         [ObservableProperty]
         private bool _canDownloadSnippets = false;
+
+        [NotifyCanExecuteChangedFor(nameof(ConvertVideoItemCommand))]
+        [ObservableProperty]
+        private string _videoStatus;
 
         private static readonly Regex InvalidCharacters = new(@"[\\\/:\*\?""<>\|]", RegexOptions.Compiled);
         // these partial methods are automatically called when the corresponding properties change, allowing us to update the underlying VideoItem properties accordingly
@@ -68,6 +74,29 @@ namespace MVC.ViewModels
         partial void OnVideoDownloadCurrentProgressChanged(int value)
         {
             _item.VideoDownloadCurrentProgress = value;
+        }
+        void OnTempVideoPathChanged(Object? sender, PropertyChangedEventArgs e)
+        {
+            Dispatcher.UIThread.Post(() =>
+            {
+                if (!string.IsNullOrWhiteSpace(_item.TempVideoPath))
+                {
+                    VideoStatus = "Vidéo téléchargée";
+                }
+                else
+                {
+                    VideoStatus = "Video en cours de téléchargement...";
+                }
+            });
+        }
+
+        public async void OnPageClose(object sender, EventArgs e)
+        {
+            if (sender == null)
+            {
+                return;
+            }            
+            await VideoItem.DeleteTempVideoFile(_item.TempVideoPath);
         }
 
         
@@ -93,13 +122,19 @@ namespace MVC.ViewModels
         [RelayCommand(CanExecute = nameof(CanLoadVideoItem))]
         private async Task LoadVideoItem()
         {
+            if (!Path.Exists(VideoPath))
+            {
+                await RaiseError("Chemin invalide", "Veuillez sélectionner un chemin de sauvegarde valide pour la vidéo.");
+                return;
+            }
             try
             {
-                var data = await _item.InitializeAsync();
+                await _item.InitializeAsync();
                 var newVideoSnippet = new VideoSnippetViewModel(_item.Video.Title, _item.VideoLength ?? 0);
                 VideoSnippets.Clear();
                 VideoSnippets.Add(newVideoSnippet);
                 ShowSnippetSection = true;
+                Task.Run(() => _item.WriteVideoToFile());
             }
             catch(Exception ex)
             {
@@ -109,12 +144,13 @@ namespace MVC.ViewModels
         }
 
         // This method checks if the provided video URL is valid and belongs to YouTube, enabling the LoadVideoItem command accordingly
-        private bool CanLoadVideoItem() => !string.IsNullOrWhiteSpace(VideoURL) && (VideoURL.Contains("www.youtube.com") || VideoURL.Contains("youtu.be"));
+        private bool CanLoadVideoItem() => !string.IsNullOrWhiteSpace(VideoURL) && (VideoURL.Contains("www.youtube.com") || VideoURL.Contains("youtu.be")) &&!string.IsNullOrWhiteSpace(VideoPath);
 
         // The constructor initializes the ViewModel with a new VideoItem instance, setting up the initial state for the application
         public VideoPageViewModel()
         {
             _item = new VideoItem(string.Empty);
+            _item.PropertyChanged += OnTempVideoPathChanged;
 
             VideoSnippets.CollectionChanged += (sender, e) =>
             {
@@ -152,9 +188,12 @@ namespace MVC.ViewModels
         }
 
         // This method checks if the current video item has valid properties to allow conversion, such as a valid URL, name, and path
+        
         private bool CanConvertVideoItem() => 
             !string.IsNullOrWhiteSpace(VideoURL) && 
-            !string.IsNullOrWhiteSpace(VideoPath) && CanDownloadSnippets
+            !string.IsNullOrWhiteSpace(VideoPath) &&
+            CanDownloadSnippets &&
+            VideoStatus == "Vidéo téléchargée"
             ;
         
 
@@ -162,11 +201,7 @@ namespace MVC.ViewModels
         [RelayCommand(CanExecute = nameof(CanConvertVideoItem))]
         private async Task ConvertVideoItem()
         {
-            if (!Path.Exists(VideoPath))
-            {
-                await RaiseError("Chemin invalide", "Veuillez sélectionner un chemin de sauvegarde valide pour la vidéo.");
-                return;
-            }
+            
             foreach(var snippet in VideoSnippets)
             {
                 if(File.Exists(Path.Combine(VideoPath, snippet.VideoSnippetName + ".mp3")))
@@ -194,25 +229,33 @@ namespace MVC.ViewModels
                 {
                     await RaiseError("Segments invalides", $"Le nom du segment '{snippet.VideoSnippetName}' contient des caractères invalides.\n Les caractères invalides sont : \\ / : * ? \" < > |");
                     return;
+                }                
+                if (InvalidCharacters.IsMatch(snippet.VideoSnippetName))
+                {
+                    await RaiseError("Segments invalides", $"Le nom du segment '{snippet.VideoSnippetName}' contient des caractères invalides.\n Les caractères invalides sont : \\ / : * ? \" < > |");
+                    return;
                 }
             }
-            /*if(File.Exists(Path.Combine(VideoPath, VideoName + ".mp3")))
-            {
-                await RaiseError("Fichier existant", "Un fichier avec le même nom existe déjà dans le chemin de sauvegarde. Veuillez choisir un nom différent ou supprimer le fichier existant.");
-                return;
-            }*/
+            
 
-                        
             foreach (var snippet in VideoSnippets)
             {
+                if (File.Exists(Path.Combine(VideoPath, snippet.VideoSnippetName + ".mp3")))
+                {
+                    await RaiseError("Fichier existant", "Un fichier avec le même nom existe déjà dans le chemin de sauvegarde. Veuillez choisir un nom différent ou supprimer le fichier existant.");
+                    return;
+                }
+                
                 var newItem = new VideoItem(_item);
                 var newItemViewModel = new VideoItemDownloadViewModel(newItem, snippet.VideoSnippetName);
                 newItemViewModel.PropertyChanged += OnVideoItemDownloadProgressChanged;
                 VideoItems.Add(newItemViewModel);
-                Task.Run(() => newItem.ConvertFromYoutubeToMp3(snippet.Item));
+                Task.Run(() => newItem.ConvertFromYoutubeToMp3(snippet.Item, newItem.TempVideoPath));
             }
             VideoItemsCollectionPopulated = true;
             VideoSnippets.Clear();
+            _item = new VideoItem(string.Empty);
+            VideoURL = string.Empty;
         }
 
         // This event handler listens for changes in the download progress of each video item, and updates the Clear All button state accordingly when any item's download progress changes

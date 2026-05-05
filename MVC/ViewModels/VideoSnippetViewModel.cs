@@ -10,13 +10,14 @@ using MVC.Views;
 using System.IO;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Avalonia.Controls;
+using Avalonia.Input.Platform;
 
 namespace MVC.ViewModels
 {
     public partial class VideoSnippetViewModel : ViewModelBase
     {
 
-        //private VideoItem _parentVideoItem;
 
         public VideoSnippet Item { get; private set; }
 
@@ -71,6 +72,5 @@ namespace MVC.ViewModels
         {
             return TimeSpan.TryParse(timeSpanStr, out _);
         }
-
     }
 }

@@ -156,10 +156,11 @@
                         Grid.Column="6"
                         Content="Ajouter"
                         Command="{Binding AddVideoSnippetCommand}"
+                        IsEnabled="{Binding CanDownloadSnippets}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         MinWidth="120"
-                        TabIndex="10" />
+                        TabIndex="4" />
                 </Grid>
 
                 <ScrollViewer
@@ -181,22 +182,25 @@
                                         Text="{Binding VideoSnippetName}"
                                         TextWrapping="Wrap"
                                         HorizontalAlignment="Stretch"
-                                        TabIndex="11" />
+                                        TabIndex="4" >
+                                    </TextBox>
 
                                     <MaskedTextBox
                                         Grid.Column="2"
                                         Mask="00:00:00"
                                         Text="{Binding VideoSnippetCropStart}"
+                                        GotFocus="MaskedTextBox_GotFocus"
+                                        KeyDown="MaskedTextBox_KeyDown"
                                         HorizontalAlignment="Stretch"
-                                        TabIndex="12" />
-
+                                        TabIndex="4"/>
                                     <MaskedTextBox
                                         Grid.Column="4"
                                         Mask="00:00:00"
                                         Text="{Binding VideoSnippetCropEnd}"
+                                        GotFocus="MaskedTextBox_GotFocus"
+                                        KeyDown="MaskedTextBox_KeyDown"
                                         HorizontalAlignment="Stretch"
-                                        TabIndex="13" />
-
+                                        TabIndex="4"/>
                                     <Button
                                         Grid.Column="6"
                                         Content="Vider"
@@ -205,7 +209,7 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Stretch"
                                         MinWidth="120"
-                                        TabIndex="14" />
+                                        TabIndex="4" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
@@ -217,7 +221,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="ActionColumn" />
                     </Grid.ColumnDefinitions>
-
+                    <TextBlock Grid.Column="0" Text="{Binding VideoStatus}"/>
                     <Button
                         Grid.Column="1"
                         Content="Enregistrer"
@@ -225,7 +229,7 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         MinWidth="120"
-                        TabIndex="20" />
+                        TabIndex="4" />
                 </Grid>
             </Grid>
         </Border>
@@ -276,11 +280,10 @@
                         Content="Tout vider"
                         Command="{Binding ClearVideoItemsCommand}"
                         IsEnabled="{Binding ClearAllButtonEnabled}"
-                        FontSize="12"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         MinWidth="120"
-                        TabIndex="30" />
+                        TabIndex="4" />
                 </Grid>
 
                 <ScrollViewer
@@ -320,7 +323,7 @@
                                         MinWidth="120"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Center"
-                                        TabIndex="31" />
+                                        TabIndex="4" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>

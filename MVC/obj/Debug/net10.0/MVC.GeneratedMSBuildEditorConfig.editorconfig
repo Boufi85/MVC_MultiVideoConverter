@@ -22,23 +22,23 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MVC
-build_property.ProjectDir = E:\VSProjects\MVC_MultiVideoConverter\MVC\
+build_property.ProjectDir = E:\VSProjects\MVC_2\MVC\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[E:/VSProjects/MVC_MultiVideoConverter/MVC/App.axaml]
+[E:/VSProjects/MVC_2/MVC/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[E:/VSProjects/MVC_MultiVideoConverter/MVC/Styles/AppDefaultStyles.axaml]
+[E:/VSProjects/MVC_2/MVC/Styles/AppDefaultStyles.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[E:/VSProjects/MVC_MultiVideoConverter/MVC/Views/ErrorWindowView.axaml]
+[E:/VSProjects/MVC_2/MVC/Views/ErrorWindowView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[E:/VSProjects/MVC_MultiVideoConverter/MVC/Views/MainWindow.axaml]
+[E:/VSProjects/MVC_2/MVC/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[E:/VSProjects/MVC_MultiVideoConverter/MVC/Views/VideoPageView.axaml]
+[E:/VSProjects/MVC_2/MVC/Views/VideoPageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

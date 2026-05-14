@@ -41,7 +41,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -76,9 +76,9 @@
               "target": "Package",
               "version": "[8.4.2, )"
             },
-            "MediaToolkit": {
+            "HtmlAgilityPack": {
               "target": "Package",
-              "version": "[1.1.0.1, )"
+              "version": "[1.12.4, )"
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
@@ -86,7 +86,7 @@
             },
             "Tmds.DBus.Protocol": {
               "target": "Package",
-              "version": "[0.92.0, )"
+              "version": "[0.93.0, )"
             },
             "VideoLibrary": {
               "target": "Package",
@@ -99,6 +99,14 @@
             "Xabe.FFmpeg.Downloader": {
               "target": "Package",
               "version": "[6.0.2, )"
+            },
+            "YoutubeExplode": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            },
+            "YoutubeExplode.Converter": {
+              "target": "Package",
+              "version": "[6.6.0, )"
             }
           },
           "imports": [
@@ -117,7 +125,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

@@ -15,15 +15,25 @@
           "Avalonia.Fonts.Inter": "12.0.2",
           "Avalonia.Themes.Fluent": "12.0.2",
           "CommunityToolkit.Mvvm": "8.4.2",
-          "MediaToolkit": "1.1.0.1",
+          "HtmlAgilityPack": "1.12.4",
           "System.Configuration.ConfigurationManager": "10.0.7",
-          "Tmds.DBus.Protocol": "0.92.0",
+          "Tmds.DBus.Protocol": "0.93.0",
           "VideoLibrary": "3.3.1",
           "Xabe.FFmpeg": "6.0.2",
-          "Xabe.FFmpeg.Downloader": "6.0.2"
+          "Xabe.FFmpeg.Downloader": "6.0.2",
+          "YoutubeExplode": "6.6.0",
+          "YoutubeExplode.Converter": "6.6.0"
         },
         "runtime": {
           "MVC.dll": {}
+        }
+      },
+      "AngleSharp/1.4.0": {
+        "runtime": {
+          "lib/net10.0/AngleSharp.dll": {
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
+          }
         }
       },
       "Avalonia/12.0.2": {
@@ -163,7 +173,7 @@
       "Avalonia.FreeDesktop/12.0.2": {
         "dependencies": {
           "Avalonia": "12.0.2",
-          "Tmds.DBus.Protocol": "0.92.0"
+          "Tmds.DBus.Protocol": "0.93.0"
         },
         "runtime": {
           "lib/net10.0/Avalonia.FreeDesktop.dll": {
@@ -289,6 +299,14 @@
           }
         }
       },
+      "CliWrap/3.10.1": {
+        "runtime": {
+          "lib/net10.0/CliWrap.dll": {
+            "assemblyVersion": "3.10.1.0",
+            "fileVersion": "3.10.1.0"
+          }
+        }
+      },
       "CommunityToolkit.Mvvm/8.4.2": {
         "runtime": {
           "lib/net8.0/CommunityToolkit.Mvvm.dll": {
@@ -411,11 +429,19 @@
           }
         }
       },
-      "MediaToolkit/1.1.0.1": {
+      "HtmlAgilityPack/1.12.4": {
         "runtime": {
-          "lib/net40/MediaToolkit.dll": {
-            "assemblyVersion": "1.1.0.1",
-            "fileVersion": "1.1.0.1"
+          "lib/net7.0/HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.12.4.0",
+            "fileVersion": "1.12.4.0"
+          }
+        }
+      },
+      "JsonExtensions/1.2.0": {
+        "runtime": {
+          "lib/net5.0/JsonExtensions.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
           }
         }
       },
@@ -593,11 +619,11 @@
           }
         }
       },
-      "Tmds.DBus.Protocol/0.92.0": {
+      "Tmds.DBus.Protocol/0.93.0": {
         "runtime": {
           "lib/net9.0/Tmds.DBus.Protocol.dll": {
-            "assemblyVersion": "0.92.0.0",
-            "fileVersion": "0.92.0.0"
+            "assemblyVersion": "0.93.0.0",
+            "fileVersion": "0.93.0.0"
           }
         }
       },
@@ -627,6 +653,30 @@
             "fileVersion": "6.0.2.0"
           }
         }
+      },
+      "YoutubeExplode/6.6.0": {
+        "dependencies": {
+          "AngleSharp": "1.4.0",
+          "JsonExtensions": "1.2.0"
+        },
+        "runtime": {
+          "lib/net10.0/YoutubeExplode.dll": {
+            "assemblyVersion": "6.6.0.0",
+            "fileVersion": "6.6.0.0"
+          }
+        }
+      },
+      "YoutubeExplode.Converter/6.6.0": {
+        "dependencies": {
+          "CliWrap": "3.10.1",
+          "YoutubeExplode": "6.6.0"
+        },
+        "runtime": {
+          "lib/net10.0/YoutubeExplode.Converter.dll": {
+            "assemblyVersion": "6.6.0.0",
+            "fileVersion": "6.6.0.0"
+          }
+        }
       }
     }
   },
@@ -635,6 +685,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AngleSharp/1.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6ph8mpaQx0KL0COYRt0kI8MB9gSp1PtKijKMhJU//+aVFgKAJLKDesG/+26JSaVCOrHNgPf12wpfoyRcMYOeXg==",
+      "path": "anglesharp/1.4.0",
+      "hashPath": "anglesharp.1.4.0.nupkg.sha512"
     },
     "Avalonia/12.0.2": {
       "type": "package",
@@ -755,6 +812,13 @@
       "path": "avalonia.x11/12.0.2",
       "hashPath": "avalonia.x11.12.0.2.nupkg.sha512"
     },
+    "CliWrap/3.10.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C+WzXwzpQsJVNqvuh19ZO/bw/vR43L+DC/CmvK+PATUBkail2AWYE6an17dOGgWaVGzF9sU28YwRwfNfkPrQdg==",
+      "path": "cliwrap/3.10.1",
+      "hashPath": "cliwrap.3.10.1.nupkg.sha512"
+    },
     "CommunityToolkit.Mvvm/8.4.2": {
       "type": "package",
       "serviceable": true,
@@ -790,12 +854,19 @@
       "path": "harfbuzzsharp.nativeassets.win32/8.3.1.3",
       "hashPath": "harfbuzzsharp.nativeassets.win32.8.3.1.3.nupkg.sha512"
     },
-    "MediaToolkit/1.1.0.1": {
+    "HtmlAgilityPack/1.12.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-R3u+udQOUDBGUzx4wOHsp6yiSLMdJle7a9E7JK4/btL4w/pdXAmNHP2JMe2Fpt35kLjKNE74oNKUM1hc6RceIA==",
-      "path": "mediatoolkit/1.1.0.1",
-      "hashPath": "mediatoolkit.1.1.0.1.nupkg.sha512"
+      "sha512": "sha512-ljqvBabvFwKoLniuoQKO8b5bJfJweKLs4fUNS/V5dsvpo0A8MlJqxxn9XVmP2DaskbUXty6IYaWAi1SArGIMeQ==",
+      "path": "htmlagilitypack/1.12.4",
+      "hashPath": "htmlagilitypack.1.12.4.nupkg.sha512"
+    },
+    "JsonExtensions/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ujtrK6m5BQVQLEteLfl54upN7Z59c1ZqEKmU3OlYriqnV74dIgIlNM2vkcgn2AuZEItQDNORD/2H1biI/asOdg==",
+      "path": "jsonextensions/1.2.0",
+      "hashPath": "jsonextensions.1.2.0.nupkg.sha512"
     },
     "MicroCom.Runtime/0.11.4": {
       "type": "package",
@@ -853,12 +924,12 @@
       "path": "system.security.cryptography.protecteddata/10.0.7",
       "hashPath": "system.security.cryptography.protecteddata.10.0.7.nupkg.sha512"
     },
-    "Tmds.DBus.Protocol/0.92.0": {
+    "Tmds.DBus.Protocol/0.93.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-h7IMakm0PF2jxiagoysoAjrzzLQ0UBdnSXQL5kb17YW0Fvyo12Tg96A99QkzwktWRrd7H+Uw9EzjasNLUfGYlA==",
-      "path": "tmds.dbus.protocol/0.92.0",
-      "hashPath": "tmds.dbus.protocol.0.92.0.nupkg.sha512"
+      "sha512": "sha512-KDshXiWIfl26HUUN9Yv6CbAluEld8ZTrH+CJuCfLdBV/nXuhuEkcJrdcgApd5vCIkhxvOluJu9Qp7hn90hHcXQ==",
+      "path": "tmds.dbus.protocol/0.93.0",
+      "hashPath": "tmds.dbus.protocol.0.93.0.nupkg.sha512"
     },
     "VideoLibrary/3.3.1": {
       "type": "package",
@@ -880,6 +951,20 @@
       "sha512": "sha512-UIvlf8airHkU4jxmF2jG0wsRXGnXrKn9C+iGC7Mm7PlLmYrXDcWEdCTO6h49A2zPKepSYkWwcSfyptHlfo+v8g==",
       "path": "xabe.ffmpeg.downloader/6.0.2",
       "hashPath": "xabe.ffmpeg.downloader.6.0.2.nupkg.sha512"
+    },
+    "YoutubeExplode/6.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DCFAmPvADs/ZB3pB24kLFzVY/1o6iECqJ7IL9LKi4zkSZLgcXDwFbOJe3vd2K3FBw36Xa3O/QMv10zelT7hjfA==",
+      "path": "youtubeexplode/6.6.0",
+      "hashPath": "youtubeexplode.6.6.0.nupkg.sha512"
+    },
+    "YoutubeExplode.Converter/6.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kARdxk9iw785lmQ6ekWwMIN+4+wA/la4zyxyuuVOB+s0Jj4+JpGGaofmquxK9UbD8QrHZSUtu8dHLftTfuYkfA==",
+      "path": "youtubeexplode.converter/6.6.0",
+      "hashPath": "youtubeexplode.converter.6.6.0.nupkg.sha512"
     }
   }
 }

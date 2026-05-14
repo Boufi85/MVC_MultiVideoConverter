@@ -39,8 +39,7 @@ namespace MVC.ViewModels
             Item = new VideoSnippet(tempName, length);
             VideoSnippetName = tempName;
             VideoSnippetCropStart = TimeSpan.FromSeconds(0).ToString("hh\\:mm\\:ss");
-            VideoSnippetCropEnd = TimeSpan.FromSeconds(length).ToString("hh\\:mm\\:ss");
-            
+            VideoSnippetCropEnd = TimeSpan.FromSeconds(length).ToString("hh\\:mm\\:ss");       
 
         }
 

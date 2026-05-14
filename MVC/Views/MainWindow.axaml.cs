@@ -17,7 +17,7 @@ namespace MVC.Views
         {
             if(DataContext is MainWindowViewModel vm)
             {
-                vm.CurrentContext.OnPageClose(sender, e);
+                vm.Video.OnPageClose(sender, e);
             }
         }
     }

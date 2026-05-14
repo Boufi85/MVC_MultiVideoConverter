@@ -1,8 +1,6 @@
 ﻿using Avalonia.Controls.Documents;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MediaToolkit;
-using MediaToolkit.Model;
 using MVC.Models;
 using System;
 using System.Collections.ObjectModel;
@@ -17,14 +15,13 @@ using Avalonia.Controls;
 
 namespace MVC.ViewModels
 {
-    public partial class MainWindowViewModel : ViewModelBase
+    partial class MainWindowViewModel : ViewModelBase
     {
-        [ObservableProperty]
-        private VideoPageViewModel _currentContext;
+        public VideoViewModel Video{ get; } = new();
+        public PlaylistViewModel Playlist { get; } = new();
 
         public MainWindowViewModel()
         {
-            CurrentContext = new VideoPageViewModel();
         }
     }
 }

@@ -10,16 +10,18 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Linq;
+using YoutubeExplode;
+using YoutubeExplode.Videos.Streams;
 
 namespace MVC.Models
 {
     [INotifyPropertyChanged]
-    public partial class VideoItem : YouTube
+    public partial class VideoItem :  YoutubeClient
     {
         
         public string? VideoPath { get; set; }
 
-        public string? VideoURL { get; set; }
+        public string? VideoURL  { get; set; }
 
         [ObservableProperty]
         public string? _videoName;
@@ -72,10 +74,11 @@ namespace MVC.Models
                 VideoName= "Chargement...";
                 Video = await YouTube.Default.GetVideoAsync(VideoURL);
                 VideoLength = Video.Info.LengthSeconds;
+
                 var safeVideoName = Regex.Replace(Video.Title, @"[\\\/:*?""<>|#]", "_");
                 VideoName = safeVideoName;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new InvalidOperationException("URL non valide");
             }
@@ -87,10 +90,10 @@ namespace MVC.Models
             Console.WriteLine("ConvertFromYoutubeToMp3 : starting function");
             this.DownloadEnded = false;
             // Ensure output directory exists
-            Directory.CreateDirectory(VideoPath);
+            Directory.CreateDirectory(VideoPath??String.Empty);
 
             // Use VideoLibrary to get the video stream (as binary) and save to a temp file
-            var tmp = Path.Combine(VideoPath, Guid.NewGuid().ToString() + Path.GetExtension(this.Video.FullName));
+            var tmp = Path.Combine(VideoPath??String.Empty, Guid.NewGuid().ToString() + Path.GetExtension(this.Video.FullName));
             Console.WriteLine("ConvertFromYoutubeToMp3 :writing temporary vidéo to file");
             await File.WriteAllBytesAsync(tmp, this.Video.GetBytes());
             TempVideoPath = tmp;
@@ -109,7 +112,7 @@ namespace MVC.Models
             Console.WriteLine("ConvertFromYoutubeToMp3 :writing temporary vidéo to file");
             await File.WriteAllBytesAsync(tempVideoPath, this.Video.GetBytes());*/
 
-            var outputMp3Path = Path.Combine(VideoPath, Snippet.VideoName + ".mp3");
+            var outputMp3Path = Path.Combine(VideoPath??String.Empty, Snippet.VideoName + ".mp3");
 
             Console.WriteLine("ConvertFromYoutubeToMp3 : temp write complete");
             try
@@ -148,7 +151,7 @@ namespace MVC.Models
                 await conversion.Start();
                 Console.WriteLine("ConvertFromYoutubeToMp3 :Conversion complete");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("ConvertFromYoutubeToMp3: error while converting 2");
                 throw;

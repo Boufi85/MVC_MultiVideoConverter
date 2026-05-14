@@ -3,23 +3,28 @@
              x:Class="MVC.App"
              xmlns:local="using:MVC"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+
     <Application.Styles>
-        <FluentTheme />
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <ColorPaletteResources x:Key="Light" Accent="#4A90E2" />
+                <ColorPaletteResources x:Key="Dark" Accent="#4A90E2" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+
         <StyleInclude Source="Styles/AppDefaultStyles.axaml" />
+
         <Style Selector="TextBlock">
-    <Setter Property="FontFamily" Value="fonts:Inter#Inter" />
-</Style>
-
-        
+            <Setter Property="FontFamily" Value="fonts:Inter#Inter" />
+        </Style>
     </Application.Styles>
-    <Application.Resources>
-		<SolidColorBrush x:Key="PrimaryColor" Color="#1F232A"/>
-    </Application.Resources>
 
+    <Application.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#1F232A"/>
+    </Application.Resources>
 </Application>

@@ -4,16 +4,12 @@ using Avalonia.Input;
 using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using Avalonia.Platform.Storage;
-using System;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
-
 namespace MVC.Views
 {
-    public partial class VideoPageView : UserControl
+    public partial class PlaylistView : UserControl
     {
-        public VideoPageView()
+        public PlaylistView()
         {
             InitializeComponent();
             AddHandler(InputElement.KeyDownEvent, MaskedTextBox_KeyDown, RoutingStrategies.Tunnel);
@@ -30,7 +26,7 @@ namespace MVC.Views
         }
         private async void MaskedTextBox_KeyDown(object? sender, KeyEventArgs e)
         {
-            if(e.Source is not MaskedTextBox tb)
+            if (e.Source is not MaskedTextBox tb)
             {
                 return;
             }
@@ -48,6 +44,6 @@ namespace MVC.Views
                 }
             }
         }
-
     }
 }
+

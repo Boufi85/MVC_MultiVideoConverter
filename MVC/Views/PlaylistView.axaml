@@ -1,0 +1,325 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:MVC.ViewModels"
+    x:Class="MVC.Views.PlaylistView"
+    x:DataType="vm:VideoViewModel"
+    mc:Ignorable="d"
+    d:DesignWidth="800"
+    d:DesignHeight="800"
+    FontFamily="fonts:Inter#Inter">
+
+    <Grid
+        x:Name="Root"
+        Grid.IsSharedSizeScope="True"
+        RowDefinitions="Auto,0.1*,2*,0.1*,1.5*"
+        RowSpacing="0">
+        <!-- Etape 1 -->
+        <Border
+            Grid.Row="0"
+            Background="#262C36"
+            BorderThickness="1"
+            CornerRadius="14"
+            Padding="16">
+
+            <Grid
+                RowDefinitions="Auto,16,Auto"
+                ColumnDefinitions="2*,0.1*,2*,0.1*,Auto"
+                RowSpacing="0"
+                ColumnSpacing="0">
+
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Text="Etape 1 : Sélection de la playlist"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Margin="0,0,0,16" />
+
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    RowDefinitions="Auto,10,Auto"
+                    ColumnDefinitions="1.5*,0.1*,1.5*,0.1*,Auto"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="URL de la playlist"
+                        VerticalAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Text="Chemin de sauvegarde"
+                        VerticalAlignment="Center" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="{Binding VideoURL}"
+                        HorizontalAlignment="Stretch"
+                        TabIndex="0" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Text="{Binding VideoPath}"
+                        HorizontalAlignment="Stretch"
+                        TabIndex="1">
+
+                        <TextBox.InnerRightContent>
+                            <Button
+                                Content="Parcourir..."
+                                Command="{Binding BrowseVideoPathCommand}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Center"
+                                MinWidth="100"
+                                FontSize="12"
+                                TabIndex="2" />
+                        </TextBox.InnerRightContent>
+                    </TextBox>
+
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="4"
+                        Content="Télécharger"
+                        Command="{Binding LoadVideoCommand}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        MinWidth="120"
+                        TabIndex="3" />
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Spacer -->
+        <Border Grid.Row="1" Background="Transparent" IsTabStop="False" />
+
+        <!-- Etape 2 -->
+        <Border
+            Grid.Row="2"
+            Background="#262C36"
+            BorderThickness="1"
+            CornerRadius="14"
+            Padding="16"
+            >
+
+            <Grid RowDefinitions="Auto,12,Auto,12,*,12,Auto">
+
+                <TextBlock
+                    Grid.Row="0"
+                    Text="Etape 2 : Sélection des fichiers à enregistrer"
+                    FontSize="16"
+                    FontWeight="SemiBold" />
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.9*" />
+                        <ColumnDefinition Width="0.1*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.1*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.1*" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="ActionColumn" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="Nom du fichier"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold" />
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="Début"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold" />
+
+                    <TextBlock
+                        Grid.Column="4"
+                        Text="Fin"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold" />
+
+                    <Button
+                        Grid.Column="6"
+                        Content="Ajouter"
+                        Command="{Binding AddSnippetCommand}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        MinWidth="120"
+                        TabIndex="4" />
+                </Grid>
+
+                <ScrollViewer
+                    Grid.Row="4"
+                    KeyboardNavigation.TabNavigation="Continue">
+                    <ItemsRepeater
+                        ItemsSource="{Binding Snippets}"
+                        KeyboardNavigation.TabNavigation="Continue">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate DataType="vm:SnippetViewModel">
+                                <Grid
+                                    Margin="0,0,0,10"
+                                    ColumnDefinitions="1.9*,0.1*,0.5*,0.1*,0.5*,0.1*,Auto"
+                                    VerticalAlignment="Center"
+                                    KeyboardNavigation.TabNavigation="Continue">
+                                    <TextBox
+                                        Grid.Column="0"
+                                        Text="{Binding Name}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Stretch"
+                                        TabIndex="4" >
+
+                                    </TextBox>
+                                    <MaskedTextBox
+                                        Grid.Column="2"
+                                        Mask="00:00:00"
+                                        Text="{Binding Start}"
+                                        GotFocus="MaskedTextBox_GotFocus"
+                                        KeyDown="MaskedTextBox_KeyDown"
+                                        HorizontalAlignment="Stretch"
+                                        TabIndex="4"/>
+                                    <MaskedTextBox
+                                        Grid.Column="4"
+                                        Mask="00:00:00"
+                                        Text="{Binding End}"
+                                        GotFocus="MaskedTextBox_GotFocus"
+                                        KeyDown="MaskedTextBox_KeyDown"
+                                        HorizontalAlignment="Stretch"
+                                        TabIndex="4"/>
+                                    <Button
+                                        Grid.Column="6"
+                                        Content="Vider"
+                                        Command="{Binding #Root.((vm:VideoViewModel)DataContext).RemoveSnippetCommand}"
+                                        CommandParameter="{Binding}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        MinWidth="120"
+                                        TabIndex="4" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+                </ScrollViewer>
+
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="ActionColumn" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Statut à remplir"/>
+                    <Button
+                        Grid.Column="1"
+                        Content="Enregistrer"
+                        Command="{Binding DownloadVideoCommand}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        MinWidth="120"
+                        TabIndex="4" />
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Spacer -->
+        <Border Grid.Row="3" Background="Transparent" IsTabStop="False" />
+
+        <!-- Etape 3 -->
+        <Border
+            Grid.Row="4"
+            Background="#262C36"
+            BorderThickness="1"
+            CornerRadius="14"
+            Padding="16">
+
+            <Grid RowDefinitions="Auto,12,Auto,12,*">
+
+                <TextBlock
+                    Grid.Row="0"
+                    Text="Etape 3 : Conversion et enregistrement"
+                    FontSize="16"
+                    FontWeight="SemiBold" />
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="0.1*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.1*" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="ActionColumn" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="Nom"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="Progression"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center" />
+
+                    <Button
+                        Grid.Column="4"
+                        Content="Tout vider"
+                        Command="{Binding ClearDownloadsCommand}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        MinWidth="120"
+                        TabIndex="4" />
+                </Grid>
+
+                <ScrollViewer
+                    Grid.Row="4"
+                    KeyboardNavigation.TabNavigation="Continue">
+                    <ItemsRepeater
+                        ItemsSource="{Binding Downloads}"
+                        KeyboardNavigation.TabNavigation="Continue">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    ColumnDefinitions="2*,0.1*,0.5*,0.1*,Auto"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,0,10"
+                                    KeyboardNavigation.TabNavigation="Continue">
+
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Text="{Binding VideoName}"
+                                        VerticalAlignment="Center"
+                                        TextWrapping="Wrap"
+                                        IsTabStop="False" />
+
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="{Binding DownloadProgress, StringFormat='{}{0}%'}"
+                                        VerticalAlignment="Center"
+                                        IsTabStop="False" />
+                                    <Button
+                                        Grid.Column="4"
+                                        Content="Vider"
+                                        Command="{Binding #Root.((vm:VideoViewModel)DataContext).RemoveDownloadCommand}"
+                                        CommandParameter="{Binding}"
+                                        Padding="10,4"
+                                        MinWidth="120"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"
+                                        TabIndex="4" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

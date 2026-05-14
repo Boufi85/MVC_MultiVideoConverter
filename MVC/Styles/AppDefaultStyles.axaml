@@ -1,61 +1,257 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:MVC.ViewModels"
-        >
-  <Design.PreviewWith>
-    <Border Padding="20">
-      <!-- Add Controls for Previewer Here -->
-      <StackPanel>
-      <Button Content="Hello World"
-              IsEnabled="True"/>
-        <TextBox Text="Sample Text"/>
-          </StackPanel>
-    </Border>
-  </Design.PreviewWith>
+        xmlns:vm="using:MVC.ViewModels">
 
-  <!-- Add Styles Here -->
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <TabControl>
+                <TabItem Header="Vidéo" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Video View" />
+                </TabItem>
+                <TabItem Header="Playlist" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Playlist View" />
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Design.PreviewWith>
 
-  <Style Selector="Window">
-	  <Setter Property="Background" Value="#1F232A"> </Setter>
-  </Style>
-    <Style Selector="Button">
-        <Setter Property="Background" Value="#4A90E2"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderBrush" Value="#4A90E2"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    <!-- Window -->
+
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#1F232A" />
     </Style>
-    <Style Selector="Button:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="#ccd6e6"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderBrush" Value="#4A90E2"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-    </Style>
-    <Style Selector="Button:disabled /template/ ContentPresenter">
-        <Setter Property="Background" Value="#29313D"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderBrush" Value="#29313d"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-    </Style>
+
+    <!-- Typography -->
+
     <Style Selector="TextBlock">
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="FontSize" Value="16"></Setter>
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
-   
-    <Style Selector="MaskedTextBox">
-		<Setter Property="Background" Value="#1B1F27"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderBrush" Value="#4A90E2"></Setter>
+
+    <Style Selector="TextBlock.compact-label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
+
+    <!-- Inputs -->
+
     <Style Selector="TextBox">
-		<Setter Property="Background" Value="#1B1F27"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderBrush" Value="#4A90E2"></Setter>
+        <Setter Property="Background" Value="#1B1F27" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+    </Style>
+
+    <Style Selector="MaskedTextBox">
+        <Setter Property="Background" Value="#1B1F27" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+    </Style>
+
+    <!-- Buttons -->
+
+    <Style Selector="Button">
+        <Setter Property="Background" Value="#4A90E2" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#CCD6E6" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Button:disabled /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29313D" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#29313D" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <!-- Tabs -->
+
+    <Style Selector="TabItem">
+        <Setter Property="Background" Value="#1F232A" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#1F232A" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style Selector="TabItem /template/ Border#PART_LayoutRoot">
+        <Setter Property="Background" Value="#1F232A" />
+        <Setter Property="BorderBrush" Value="#1F232A" />
+    </Style>
+
+    <Style Selector="TabItem:selected /template/ Border#PART_LayoutRoot">
+        <Setter Property="Background" Value="#4A90E2" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+    </Style>
+
+    <Style Selector="TabItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="TabItem:pointerover /template/ Border#PART_LayoutRoot">
+        <Setter Property="Background" Value="#29313D" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+    </Style>
+
+    <Style Selector="TabItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+
+    <!-- Panels -->
+
+    <Style Selector="Border.option-panel">
+        <Setter Property="Background" Value="#20252D" />
+        <Setter Property="BorderBrush" Value="#2B313C" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="12,10" />
+    </Style>
+
+    <!-- ComboBox -->
+
+    <Style Selector="ComboBox">
+        <Setter Property="Background" Value="#1B1F27" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="MinHeight" Value="34" />
+    </Style>
+
+    <Style Selector="ComboBox.compact-option">
+        <Setter Property="Background" Value="#1B1F27" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Padding" Value="8,4" />
+    </Style>
+
+    <Style Selector="ComboBox.compact-option /template/ ContentPresenter">
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="ComboBox:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#232936" />
+    </Style>
+
+    <Style Selector="ComboBox.compact-option:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29313D" />
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="ComboBoxItem">
+        <Setter Property="Background" Value="#1B1F27" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="ComboBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29313D" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="ComboBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="#4A90E2" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+
+    <!-- CheckBox -->
+
+    <Style Selector="CheckBox">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="CheckBox.compact-option">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0" />
+        <Style.Resources>
+            <SolidColorBrush x:Key="CheckBoxForegroundChecked">White</SolidColorBrush>
+            <SolidColorBrush x:Key="CheckBoxCheckBackgroundStrokeChecked">#4A90E2</SolidColorBrush>
+            <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillChecked">#4A90E2</SolidColorBrush>
+            <SolidColorBrush x:Key="CheckBoxCheckBackgroundStrokeCheckedPointerOver">#5AA0F2</SolidColorBrush>
+            <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver">#5AA0F2</SolidColorBrush>
+        </Style.Resources>
+    </Style>
+
+    <Style Selector="CheckBox.compact-option:pointerover">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="CheckBox.compact-option:pointerover /template/ ContentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="CheckBox.compact-option:checked /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="#4A90E2" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+    </Style>
+
+    <Style Selector="CheckBox.compact-option:checked /template/ Path#CheckGlyph">
+        <Setter Property="Fill" Value="White" />
+    </Style>
+
+    <Style Selector="CheckBox.compact-option:pointerover:checked /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="#5AA0F2" />
+        <Setter Property="BorderBrush" Value="#5AA0F2" />
+    </Style>
+
+    <!-- RadioButton -->
+
+    <Style Selector="RadioButton">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="RadioButton.compact-option">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+    <Style Selector="RadioButton.compact-option:pointerover">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="RadioButton.compact-option:pointerover /template/ ContentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="RadioButton.compact-option:checked /template/ Border#NormalEllipse">
+        <Setter Property="Background" Value="#4A90E2" />
+        <Setter Property="BorderBrush" Value="#4A90E2" />
+    </Style>
+
+    <Style Selector="RadioButton.compact-option:checked /template/ Ellipse#CheckGlyph">
+        <Setter Property="Fill" Value="White" />
+    </Style>
+
+    <Style Selector="RadioButton.compact-option:pointerover:checked /template/ Border#NormalEllipse">
+        <Setter Property="Background" Value="#5AA0F2" />
+        <Setter Property="BorderBrush" Value="#5AA0F2" />
     </Style>
 
 </Styles>

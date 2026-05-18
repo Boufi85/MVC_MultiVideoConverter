@@ -124,6 +124,17 @@ namespace MVC.Models
         }
 
         /// <summary>
+        /// Constructor from video id, will populate the rest of the data when GetVideo is called
+        /// </summary>
+        /// <param name="Id"></param>
+        public Video(string Id, string title)
+        {
+            VideoId = Id;
+            Title = title;
+            Length = 0;
+        }
+
+        /// <summary>
         /// Populate the video data from the video id, including title, length, streams, and chapters
         /// </summary>
         /// <returns></returns>
@@ -133,10 +144,15 @@ namespace MVC.Models
             string watchPage = await Task.Run(() => GetVideoWatchPageAsync());
             JsonElement initialData = await Task.Run(() => GetInitialDataAsync(watchPage));
             JsonElement player = await Task.Run(() => GetVideoPlayerAsync(visData));
-            System.IO.File.WriteAllText("E:\\VSProjects\\MVC_2\\ititialData.json", initialData.GetRawText());
             await Task.Run(() => GetName(initialData));
             Length = await Task.Run(() => GetStreams(player));
             await Task.Run(() => GetChapters(initialData));
+        }
+
+        public async Task GetStreamsOnly(string visData)
+        {
+            JsonElement player = await Task.Run(() => GetVideoPlayerAsync(visData));
+            Length = await Task.Run(() => GetStreams(player));
         }
 
         /// <summary>
@@ -327,13 +343,13 @@ namespace MVC.Models
                         runs.GetArrayLength() > 0 &&
                         runs[0].TryGetProperty("text", out var textElem))
                     {
-                        Title = textElem.GetString() ?? "Unknown";
+                        Title = Regex.Replace(textElem.GetString(), @"[<>:""/\\|?*]+", " ") ?? "Unknown";
                         return;
                     }
 
                     if (titleObj.TryGetProperty("simpleText", out var simpleText))
                     {
-                        Title = simpleText.GetString() ?? "Unknown";
+                        Title = Regex.Replace(simpleText.GetString(), @"[<>:""/\\|?*]+", " ") ?? "Unknown";
                         return;
                     }
                 }

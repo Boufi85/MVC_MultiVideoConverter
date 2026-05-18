@@ -3,20 +3,40 @@
   "WorkspaceRootPath": "E:\\VSProjects\\MVC_2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\viewmodels\\videoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\viewmodels\\videoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\views\\videoview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\videoview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\views\\playlistview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\playlistview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\views\\videoview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\videoview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\viewmodels\\playlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\viewmodels\\playlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\styles\\appdefaultstyles.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\styles\\appdefaultstyles.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\viewmodels\\videoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\viewmodels\\videoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\models\\video.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\models\\video.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\views\\videoview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\videoview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|e:\\vsprojects\\mvc_2\\mvc\\views\\playlistview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49A22FD4-FC39-D5A1-2992-E6C456843950}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\playlistview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,74 +58,115 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "VideoView.axaml.cs",
-              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml.cs",
-              "RelativeDocumentMoniker": "MVC\\Views\\VideoView.axaml.cs",
-              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml.cs",
-              "RelativeToolTip": "MVC\\Views\\VideoView.axaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T17:10:03.635Z",
+              "DocumentIndex": 0,
+              "Title": "VideoView.axaml",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml",
+              "RelativeDocumentMoniker": "MVC\\Views\\VideoView.axaml",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml*",
+              "RelativeToolTip": "MVC\\Views\\VideoView.axaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-18T16:56:51.984Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "VideoView.axaml.cs",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml.cs",
+              "RelativeDocumentMoniker": "MVC\\Views\\VideoView.axaml.cs",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml.cs",
+              "RelativeToolTip": "MVC\\Views\\VideoView.axaml.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T16:56:49.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDefaultStyles.axaml",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Styles\\AppDefaultStyles.axaml",
+              "RelativeDocumentMoniker": "MVC\\Styles\\AppDefaultStyles.axaml",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Styles\\AppDefaultStyles.axaml",
+              "RelativeToolTip": "MVC\\Styles\\AppDefaultStyles.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-18T16:50:41.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Views\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "MVC\\Views\\MainWindow.axaml",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Views\\MainWindow.axaml",
+              "RelativeToolTip": "MVC\\Views\\MainWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-18T16:49:21.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VideoViewModel.cs",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\ViewModels\\VideoViewModel.cs",
+              "RelativeDocumentMoniker": "MVC\\ViewModels\\VideoViewModel.cs",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\ViewModels\\VideoViewModel.cs",
+              "RelativeToolTip": "MVC\\ViewModels\\VideoViewModel.cs",
+              "ViewState": "AgIAAAoBAAAAAAAAAAAUwLkAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T16:41:50.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlaylistView.axaml",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Views\\PlaylistView.axaml",
+              "RelativeDocumentMoniker": "MVC\\Views\\PlaylistView.axaml",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Views\\PlaylistView.axaml",
+              "RelativeToolTip": "MVC\\Views\\PlaylistView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-18T16:35:24.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PlaylistView.axaml.cs",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Views\\PlaylistView.axaml.cs",
+              "RelativeDocumentMoniker": "MVC\\Views\\PlaylistView.axaml.cs",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Views\\PlaylistView.axaml.cs",
+              "RelativeToolTip": "MVC\\Views\\PlaylistView.axaml.cs",
+              "ViewState": "AgIAAEMBAAAAAAAAAAAqwF4BAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T14:51:59.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Video.cs",
               "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Models\\Video.cs",
               "RelativeDocumentMoniker": "MVC\\Models\\Video.cs",
               "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Models\\Video.cs",
               "RelativeToolTip": "MVC\\Models\\Video.cs",
-              "ViewState": "AgIAALIBAAAAAAAAAADgv7oBAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAG4BAAAAAAAAAAAwwJcCAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-10T14:49:46.203Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "VideoViewModel.cs",
-              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\ViewModels\\VideoViewModel.cs",
-              "RelativeDocumentMoniker": "MVC\\ViewModels\\VideoViewModel.cs",
-              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\ViewModels\\VideoViewModel.cs",
-              "RelativeToolTip": "MVC\\ViewModels\\VideoViewModel.cs",
-              "ViewState": "AgIAAOsAAAAAAAAAAAAAwA0BAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "PlaylistViewModel.cs",
+              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\ViewModels\\PlaylistViewModel.cs",
+              "RelativeDocumentMoniker": "MVC\\ViewModels\\PlaylistViewModel.cs",
+              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\ViewModels\\PlaylistViewModel.cs",
+              "RelativeToolTip": "MVC\\ViewModels\\PlaylistViewModel.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAwwKcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T08:48:36.34Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "41d7ff86-8ad3-4b51-81d5-5aa7924fc47c",
-        "Display": 1,
-        "X": 192,
-        "Y": 116,
-        "Width": 1650,
-        "Height": 810,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VideoView.axaml",
-              "DocumentMoniker": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml",
-              "RelativeDocumentMoniker": "MVC\\Views\\VideoView.axaml",
-              "ToolTip": "E:\\VSProjects\\MVC_2\\MVC\\Views\\VideoView.axaml",
-              "RelativeToolTip": "MVC\\Views\\VideoView.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-13T17:10:05.366Z",
+              "WhenOpened": "2026-05-17T19:51:09.553Z",
               "EditorCaption": ""
             }
           ]

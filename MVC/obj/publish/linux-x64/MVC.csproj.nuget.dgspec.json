@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\VSProjects\\MVC\\MVC\\MVC.csproj": {}
+    "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj": {}
   },
   "projects": {
-    "E:\\VSProjects\\MVC\\MVC\\MVC.csproj": {
+    "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\VSProjects\\MVC\\MVC\\MVC.csproj",
+        "projectUniqueName": "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj",
         "projectName": "MVC",
-        "projectPath": "E:\\VSProjects\\MVC\\MVC\\MVC.csproj",
+        "projectPath": "E:\\VSProjects\\MVC_2\\MVC\\MVC.csproj",
         "packagesPath": "C:\\Users\\tombe\\.nuget\\packages\\",
-        "outputPath": "E:\\VSProjects\\MVC\\MVC\\obj\\publish\\linux-x64\\",
+        "outputPath": "E:\\VSProjects\\MVC_2\\MVC\\obj\\publish\\linux-x64\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tombe\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,7 +41,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -50,47 +50,51 @@
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
+            },
+            "Avalonia.Controls.ItemsRepeater": {
+              "target": "Package",
+              "version": "[12.0.0, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
             },
             "Avalonia.Diagnostics": {
               "include": "None",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[11.3.14, )"
             },
             "Avalonia.Fonts.Inter": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[12.0.2, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.1, )"
+              "version": "[8.4.2, )"
             },
-            "MediaToolkit": {
+            "HtmlAgilityPack": {
               "target": "Package",
-              "version": "[1.1.0.1, )"
+              "version": "[1.12.4, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.6, )",
+              "version": "[10.0.8, )",
               "autoReferenced": true
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[10.0.7, )"
             },
             "Tmds.DBus.Protocol": {
               "target": "Package",
-              "version": "[0.92.0, )"
+              "version": "[0.93.0, )"
             },
             "VideoLibrary": {
               "target": "Package",
@@ -103,6 +107,14 @@
             "Xabe.FFmpeg.Downloader": {
               "target": "Package",
               "version": "[6.0.2, )"
+            },
+            "YoutubeExplode": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            },
+            "YoutubeExplode.Converter": {
+              "target": "Package",
+              "version": "[6.6.0, )"
             }
           },
           "imports": [
@@ -119,15 +131,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[10.0.6, 10.0.6]"
+              "version": "[10.0.8, 10.0.8]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.linux-x64",
-              "version": "[10.0.6, 10.0.6]"
+              "version": "[10.0.8, 10.0.8]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[10.0.6, 10.0.6]"
+              "version": "[10.0.8, 10.0.8]"
             }
           ],
           "frameworkReferences": {
@@ -135,7 +147,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

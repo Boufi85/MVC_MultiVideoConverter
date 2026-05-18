@@ -29,6 +29,7 @@ namespace MVC.ViewModels
         [ObservableProperty]
         private bool _isDownloadFinished;
 
+
         // Constructor that initializes the ViewModel with a Video
         public DownloadViewModel(Video video, string videoSnippetName)
         {

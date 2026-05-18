@@ -18,10 +18,10 @@
 
     <Grid Margin="8">
         <TabControl Padding="0,4,4,4">
-            <TabItem Header="Vidéo" HorizontalAlignment="Stretch" CornerRadius="6">
+            <TabItem Header="Vidéo" HorizontalAlignment="Stretch" CornerRadius="6" MinWidth="100">
                 <view:VideoView DataContext="{Binding Video}"/>
             </TabItem>
-            <TabItem Header="Playlist" HorizontalAlignment="Stretch" CornerRadius="6">
+            <TabItem Header="Playlist" HorizontalAlignment="Stretch" CornerRadius="6" MinWidth="100">
                 <view:PlaylistView DataContext="{Binding Playlist}"/>
             </TabItem>
         </TabControl>

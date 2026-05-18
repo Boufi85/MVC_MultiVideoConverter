@@ -1,188 +1,190 @@
 <UserControl
-    xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="using:MVC.ViewModels"
-    x:Class="MVC.Views.VideoView"
-    x:DataType="vm:VideoViewModel"
-    mc:Ignorable="d"
-    d:DesignWidth="800"
-    d:DesignHeight="800"
-    FontFamily="fonts:Inter#Inter">
+xmlns="https://github.com/avaloniaui"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:vm="using:MVC.ViewModels"
+x:Class="MVC.Views.VideoView"
+x:DataType="vm:VideoViewModel"
+mc:Ignorable="d"
+d:DesignWidth="800"
+d:DesignHeight="800"
+FontFamily="fonts:Inter#Inter">
 
     <Grid
-        x:Name="Root"
-        Grid.IsSharedSizeScope="True"
-        RowDefinitions="Auto,0.1*,2*,0.1*,1.5*"
-        RowSpacing="0">
-    <!-- Etape 1 -->
-    <Border
-    Grid.Row="0"
-    Background="#262C36"
-    BorderThickness="1"
-    CornerRadius="14"
-    Padding="16">
+    x:Name="Root"
+    Grid.IsSharedSizeScope="True"
+    RowDefinitions="Auto,0.1*,2*,0.1*,1.5*"
+    RowSpacing="0">
 
-        <Grid
-        RowDefinitions="Auto,16,Auto"
-        ColumnDefinitions="2*,0.1*,2*,0.1*,Auto"
-        RowSpacing="0"
-        ColumnSpacing="0">
-
-            <TextBlock
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Text="Etape 1 : Sélection de la vidéo"
-            FontSize="16"
-            FontWeight="SemiBold"
-            Margin="0,0,0,16" />
+        <!-- Étape 1 -->
+        <Border
+        Grid.Row="0"
+        Background="#262C36"
+        BorderThickness="1"
+        CornerRadius="14"
+        Padding="16">
 
             <Grid
-            Grid.Row="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            RowDefinitions="Auto,10,Auto,12,Auto"
-            ColumnDefinitions="1.5*,0.1*,2*,0.1*,Auto"
-            ColumnSpacing="0"
-            RowSpacing="0">
-
-                <!-- Main labels -->
-                <TextBlock
-                Grid.Row="0"
-                Grid.Column="0"
-                Text="URL de la vidéo"
-                VerticalAlignment="Center" />
+            RowDefinitions="Auto,16,Auto"
+            ColumnDefinitions="2*,0.1*,2*,0.1*,Auto"
+            RowSpacing="0"
+            ColumnSpacing="0">
 
                 <TextBlock
                 Grid.Row="0"
-                Grid.Column="2"
-                Text="Chemin de sauvegarde"
-                VerticalAlignment="Center" />
-
-                <!-- Main inputs -->
-                <TextBox
-                Grid.Row="2"
-                Grid.Column="0"
-                Text="{Binding VideoURL}"
-                HorizontalAlignment="Stretch"
-                TabIndex="0" />
-
-                <TextBox
-                Grid.Row="2"
-                Grid.Column="2"
-                Text="{Binding VideoPath}"
-                HorizontalAlignment="Stretch"
-                TabIndex="1">
-
-                    <TextBox.InnerRightContent>
-                        <Button
-                        Content="Parcourir..."
-                        Command="{Binding BrowseVideoPathCommand}"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Center"
-                        MinWidth="100"
-                        FontSize="12"
-                        TabIndex="2" />
-                    </TextBox.InnerRightContent>
-                </TextBox>
-
-                <Button
-                Grid.Row="2"
-                Grid.Column="4"
-                Content="Télécharger"
-                Command="{Binding LoadVideoCommand}"
-                IsEnabled="{Binding LoadVideoButtonEnabled}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                MinWidth="120"
-                TabIndex="3" />
-
-                <!-- Video options only -->
-                <Border
-                Classes="option-panel"
-                Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="5"
-                Padding="10,5">
+                Text="Étape 1 : Sélection de la vidéo"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Margin="0,0,0,16" />
 
-                    <Grid
-                    ColumnDefinitions="Auto,16,Auto,24,Auto,12,220,24,Auto,*"
-                    VerticalAlignment="Center">
+                <Grid
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                RowDefinitions="Auto,10,Auto,12,Auto"
+                ColumnDefinitions="1.5*,0.1*,1.5*,0.1*,Auto"
+                ColumnSpacing="0"
+                RowSpacing="0">
 
-                        <TextBlock
-                        Grid.Column="0"
-                        Text="Mode"
+                    <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="URL de la vidéo"
+                    VerticalAlignment="Center" />
+
+                    <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Text="Chemin de sauvegarde"
+                    VerticalAlignment="Center" />
+
+                    <TextBox
+                    x:Name="VideoUrlTextBox"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="{Binding VideoURL}"
+                    HorizontalAlignment="Stretch"
+                    TabIndex="0" />
+
+                    <TextBox
+                    x:Name="VideoPathTextBox"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Text="{Binding VideoPath}"
+                    HorizontalAlignment="Stretch"
+                    TabIndex="1">
+
+                        <TextBox.InnerRightContent>
+                            <Button
+                            x:Name="BrowseVideoPathButton"
+                            Content="Parcourir..."
+                            Command="{Binding BrowseVideoPathCommand}"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Center"
+                            MinWidth="100"
+                            FontSize="12"
+                            TabIndex="2" />
+                        </TextBox.InnerRightContent>
+                    </TextBox>
+
+                    <Button
+                    x:Name="LoadVideoButton"
+                    Grid.Row="2"
+                    Grid.Column="4"
+                    Content="Télécharger"
+                    Command="{Binding LoadVideoCommand}"
+                    IsEnabled="{Binding LoadVideoButtonEnabled}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    MinWidth="120"
+                    TabIndex="3" />
+
+                    <Border
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Classes="option-panel"
+                    Padding="10,5">
+
+                        <Grid
                         VerticalAlignment="Center"
-                        FontSize="14" />
+                        ColumnDefinitions="Auto,0.15*,Auto,Auto,0.15*,Auto,0.15*,220,0.15*,Auto,*">
 
-                        <StackPanel
-                        Grid.Column="2"
-                        Orientation="Horizontal"
-                        Spacing="16"
-                        VerticalAlignment="Center">
-    <Border Classes="segment-group">
-        <Grid ColumnDefinitions="*,*">
-            <ToggleButton Grid.Column="0"
-                          Classes="segment-left"
-                          Content="Audio"
-                          IsChecked="{Binding !VideoMode}" />
+                            <TextBlock
+                            Grid.Column="0"
+                            Text="Mode"
+                            VerticalAlignment="Center"
+                            FontSize="14" />
 
-            <ToggleButton Grid.Column="1"
-                          Classes="segment-right"
-                          Content="Vidéo"
-                          IsChecked="{Binding VideoMode}" />
-        </Grid>
-</Border>
-                        </StackPanel>
+                            <ToggleButton
+                            x:Name="AudioToggleButton"
+                            Grid.Column="2"
+                            Classes="segment-left"
+                            Content="Audio"
+                            IsChecked="{Binding !VideoMode}"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="4" />
 
-                        <TextBlock
-                        Grid.Column="4"
-                        Text="Qualité"
-                        VerticalAlignment="Center"
-                        FontSize="14" />
+                            <ToggleButton
+                            x:Name="VideoToggleButton"
+                            Grid.Column="3"
+                            Classes="segment-right"
+                            Content="Vidéo"
+                            IsChecked="{Binding VideoMode}"
+                            HorizontalAlignment="Stretch"
+                            TabIndex="5" />
 
-                        <ComboBox
-                        Grid.Column="6"
-                        SelectedIndex="0"
-                        MinWidth="220"
-                        HorizontalAlignment="Left"
-                        ItemsSource="{Binding Qualities}"
-                        SelectedItem="{Binding SelectedQuality}" 
-                        IsEnabled="{Binding VideoMode}"/>
+                            <TextBlock
+                            Grid.Column="5"
+                            Text="Qualité"
+                            VerticalAlignment="Center"
+                            FontSize="14" />
 
-                        <CheckBox
-                        Grid.Column="8"
-                        Content="Extraire les chapitres"
-                        IsChecked="{Binding ChapterSplit}"
-                        IsEnabled="{Binding ChaptersSelectionButtonEnabled}"
-                        VerticalAlignment="Center" />
-                    </Grid>
-                </Border>
+                            <ComboBox
+                            x:Name="QualityComboBox"
+                            Grid.Column="7"
+                            SelectedIndex="0"
+                            MinWidth="220"
+                            HorizontalAlignment="Left"
+                            ItemsSource="{Binding Qualities}"
+                            SelectedItem="{Binding SelectedQuality}"
+                            IsEnabled="{Binding VideoMode}"
+                            TabIndex="6" />
+
+                            <CheckBox
+                            x:Name="ChapterSplitCheckBox"
+                            Grid.Column="9"
+                            Content="Extraire les chapitres"
+                            IsChecked="{Binding ChapterSplit}"
+                            IsEnabled="{Binding ChaptersSelectionButtonEnabled}"
+                            VerticalAlignment="Center"
+                            TabIndex="7" />
+                        </Grid>
+                    </Border>
+                </Grid>
             </Grid>
-        </Grid>
-</Border>
+        </Border>
 
-        <!-- Spacer -->
         <Border Grid.Row="1" Background="Transparent" IsTabStop="False" />
 
-        <!-- Etape 2 -->
+        <!-- Étape 2 -->
         <Border
-            Grid.Row="2"
-            Background="#262C36"
-            BorderThickness="1"
-            CornerRadius="14"
-            Padding="16"
-            >
+        Grid.Row="2"
+        Background="#262C36"
+        BorderThickness="1"
+        CornerRadius="14"
+        Padding="16">
 
             <Grid RowDefinitions="Auto,12,Auto,12,*,12,Auto">
 
                 <TextBlock
-                    Grid.Row="0"
-                    Text="Etape 2 : Sélection des fichiers à enregistrer"
-                    FontSize="16"
-                    FontWeight="SemiBold" />
+                Grid.Row="0"
+                Text="Étape 2 : Sélection des fichiers à enregistrer"
+                FontSize="16"
+                FontWeight="SemiBold" />
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -196,80 +198,83 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock
-                        Grid.Column="0"
-                        Text="Nom du fichier"
-                        VerticalAlignment="Center"
-                        FontWeight="SemiBold" />
+                    Grid.Column="0"
+                    Text="Nom du fichier"
+                    VerticalAlignment="Center"
+                    FontWeight="SemiBold" />
 
                     <TextBlock
-                        Grid.Column="2"
-                        Text="Début"
-                        VerticalAlignment="Center"
-                        FontWeight="SemiBold" />
+                    Grid.Column="2"
+                    Text="Début"
+                    VerticalAlignment="Center"
+                    FontWeight="SemiBold" />
 
                     <TextBlock
-                        Grid.Column="4"
-                        Text="Fin"
-                        VerticalAlignment="Center"
-                        FontWeight="SemiBold" />
+                    Grid.Column="4"
+                    Text="Fin"
+                    VerticalAlignment="Center"
+                    FontWeight="SemiBold" />
 
                     <Button
-                        Grid.Column="6"
-                        Content="Ajouter"
-                        Command="{Binding AddSnippetCommand}"
-                        IsEnabled="{Binding AddButtonEnabled}"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        MinWidth="120"
-                        TabIndex="4" />
+                    x:Name="AddSnippetButton"
+                    Grid.Column="6"
+                    Content="Ajouter"
+                    Command="{Binding AddSnippetCommand}"
+                    IsEnabled="{Binding AddButtonEnabled}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    MinWidth="120"
+                    TabIndex="8" />
                 </Grid>
 
                 <ScrollViewer
-                    Grid.Row="4"
-                    KeyboardNavigation.TabNavigation="Continue">
+                Grid.Row="4"
+                KeyboardNavigation.TabNavigation="Continue">
                     <ItemsRepeater
-                        ItemsSource="{Binding Snippets}"
-                        KeyboardNavigation.TabNavigation="Continue">
+                    x:Name="SnippetsRepeater"
+                    ItemsSource="{Binding Snippets}"
+                    KeyboardNavigation.TabNavigation="Continue">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate DataType="vm:SnippetViewModel">
                                 <Grid
-                                    Margin="0,0,0,10"
-                                    ColumnDefinitions="1.9*,0.1*,0.5*,0.1*,0.5*,0.1*,Auto"
-                                    VerticalAlignment="Center"
-                                    KeyboardNavigation.TabNavigation="Continue">
-                                    <TextBox
-                                        Grid.Column="0"
-                                        Text="{Binding Name}"
-                                        TextWrapping="Wrap"
-                                        HorizontalAlignment="Stretch"
-                                        TabIndex="4" >
+                                Margin="0,0,0,10"
+                                ColumnDefinitions="1.9*,0.1*,0.5*,0.1*,0.5*,0.1*,Auto"
+                                VerticalAlignment="Center"
+                                KeyboardNavigation.TabNavigation="Local"
+                                AttachedToVisualTree="SnippetRow_AttachedToVisualTree">
 
-                                    </TextBox>
+                                    <TextBox
+                                    x:Name="SnippetNameTextBox"
+                                    Grid.Column="0"
+                                    Text="{Binding Name}"
+                                    TextWrapping="Wrap"
+                                    HorizontalAlignment="Stretch" />
+
                                     <MaskedTextBox
-                                        Grid.Column="2"
-                                        Mask="00:00:00"
-                                        Text="{Binding Start}"
-                                        GotFocus="MaskedTextBox_GotFocus"
-                                        KeyDown="MaskedTextBox_KeyDown"
-                                        HorizontalAlignment="Stretch"
-                                        TabIndex="4"/>
+                                    x:Name="SnippetStartMaskedTextBox"
+                                    Grid.Column="2"
+                                    Mask="00:00:00"
+                                    Text="{Binding Start}"
+                                    GotFocus="MaskedTextBox_GotFocus"
+                                    HorizontalAlignment="Stretch" />
+
                                     <MaskedTextBox
-                                        Grid.Column="4"
-                                        Mask="00:00:00"
-                                        Text="{Binding End}"
-                                        GotFocus="MaskedTextBox_GotFocus"
-                                        KeyDown="MaskedTextBox_KeyDown"
-                                        HorizontalAlignment="Stretch"
-                                        TabIndex="4"/>
+                                    x:Name="SnippetEndMaskedTextBox"
+                                    Grid.Column="4"
+                                    Mask="00:00:00"
+                                    Text="{Binding End}"
+                                    GotFocus="MaskedTextBox_GotFocus"
+                                    HorizontalAlignment="Stretch" />
+
                                     <Button
-                                        Grid.Column="6"
-                                        Content="Vider"
-                                        Command="{Binding #Root.((vm:VideoViewModel)DataContext).RemoveSnippetCommand}"
-                                        CommandParameter="{Binding}"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Stretch"
-                                        MinWidth="120"
-                                        TabIndex="4" />
+                                    x:Name="DeleteSnippetButton"
+                                    Grid.Column="6"
+                                    Content="Vider"
+                                    Command="{Binding #Root.((vm:VideoViewModel)DataContext).RemoveSnippetCommand}"
+                                    CommandParameter="{Binding}"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Stretch"
+                                    MinWidth="120" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
@@ -281,37 +286,38 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="ActionColumn" />
                     </Grid.ColumnDefinitions>
+
                     <Button
-                        Grid.Column="1"
-                        Content="Enregistrer"
-                        Command="{Binding DownloadVideoCommand}"
-                        IsEnabled="{Binding SaveButtonEnabled}"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        MinWidth="120"
-                        TabIndex="4" />
+                    x:Name="DownloadVideoButton"
+                    Grid.Column="1"
+                    Content="Enregistrer"
+                    Command="{Binding DownloadVideoCommand}"
+                    IsEnabled="{Binding SaveButtonEnabled}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    MinWidth="120"
+                    TabIndex="9" />
                 </Grid>
             </Grid>
         </Border>
 
-        <!-- Spacer -->
         <Border Grid.Row="3" Background="Transparent" IsTabStop="False" />
 
-        <!-- Etape 3 -->
+        <!-- Étape 3 -->
         <Border
-            Grid.Row="4"
-            Background="#262C36"
-            BorderThickness="1"
-            CornerRadius="14"
-            Padding="16">
+        Grid.Row="4"
+        Background="#262C36"
+        BorderThickness="1"
+        CornerRadius="14"
+        Padding="16">
 
             <Grid RowDefinitions="Auto,12,Auto,12,*">
 
                 <TextBlock
-                    Grid.Row="0"
-                    Text="Etape 3 : Conversion et enregistrement"
-                    FontSize="16"
-                    FontWeight="SemiBold" />
+                Grid.Row="0"
+                Text="Étape 3 : Conversion et enregistrement"
+                FontSize="16"
+                FontWeight="SemiBold" />
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -323,65 +329,69 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock
-                        Grid.Column="0"
-                        Text="Nom"
-                        FontWeight="SemiBold"
-                        VerticalAlignment="Center" />
+                    Grid.Column="0"
+                    Text="Nom"
+                    FontWeight="SemiBold"
+                    VerticalAlignment="Center" />
 
                     <TextBlock
-                        Grid.Column="2"
-                        Text="Progression"
-                        FontWeight="SemiBold"
-                        VerticalAlignment="Center" />
+                    Grid.Column="2"
+                    Text="Progression"
+                    FontWeight="SemiBold"
+                    VerticalAlignment="Center" />
 
                     <Button
-                        Grid.Column="4"
-                        Content="Tout vider"
-                        Command="{Binding ClearDownloadsCommand}"
-                        IsEnabled="{Binding ClearAllButtonEnabled}"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        MinWidth="120"
-                        TabIndex="4" />
+                    x:Name="ClearDownloadsButton"
+                    Grid.Column="4"
+                    Content="Tout vider"
+                    Command="{Binding ClearDownloadsCommand}"
+                    IsEnabled="{Binding ClearAllButtonEnabled}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    MinWidth="120"
+                    TabIndex="10" />
                 </Grid>
 
                 <ScrollViewer
-                    Grid.Row="4"
-                    KeyboardNavigation.TabNavigation="Continue">
+                Grid.Row="4"
+                KeyboardNavigation.TabNavigation="Continue">
                     <ItemsRepeater
-                        ItemsSource="{Binding Downloads}"
-                        KeyboardNavigation.TabNavigation="Continue">
+                    x:Name="DownloadsRepeater"
+                    ItemsSource="{Binding Downloads}"
+                    KeyboardNavigation.TabNavigation="Continue">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate>
                                 <Grid
-                                    ColumnDefinitions="2*,0.1*,0.5*,0.1*,Auto"
+                                ColumnDefinitions="2*,0.1*,0.5*,0.1*,Auto"
+                                VerticalAlignment="Center"
+                                Margin="0,0,0,10"
+                                KeyboardNavigation.TabNavigation="Local"
+                                AttachedToVisualTree="DownloadRow_AttachedToVisualTree">
+
+                                    <TextBlock
+                                    Grid.Column="0"
+                                    Text="{Binding VideoName}"
                                     VerticalAlignment="Center"
-                                    Margin="0,0,0,10"
-                                    KeyboardNavigation.TabNavigation="Continue">
+                                    TextWrapping="Wrap"
+                                    IsTabStop="False" />
 
                                     <TextBlock
-                                        Grid.Column="0"
-                                        Text="{Binding VideoName}"
-                                        VerticalAlignment="Center"
-                                        TextWrapping="Wrap"
-                                        IsTabStop="False" />
+                                    Grid.Column="2"
+                                    Text="{Binding DownloadProgress, StringFormat='{}{0}%'}"
+                                    VerticalAlignment="Center"
+                                    IsTabStop="False" />
 
-                                    <TextBlock
-                                        Grid.Column="2"
-                                        Text="{Binding DownloadProgress, StringFormat='{}{0}%'}"
-                                        VerticalAlignment="Center"
-                                        IsTabStop="False" />
                                     <Button
-                                        Grid.Column="4"
-                                        Content="Vider"
-                                        Command="{Binding #Root.((vm:VideoViewModel)DataContext).RemoveDownloadCommand}"
-                                        CommandParameter="{Binding}"
-                                        IsEnabled="{Binding IsDownloadFinished}"
-                                        Padding="10,4"
-                                        MinWidth="120"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Center"
-                                        TabIndex="4" />
+                                    x:Name="DeleteDownloadButton"
+                                    Grid.Column="4"
+                                    Content="Vider"
+                                    Command="{Binding #Root.((vm:VideoViewModel)DataContext).RemoveDownloadCommand}"
+                                    CommandParameter="{Binding}"
+                                    IsEnabled="{Binding IsDownloadFinished}"
+                                    Padding="10,4"
+                                    MinWidth="120"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
